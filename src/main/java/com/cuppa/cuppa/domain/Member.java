@@ -1,17 +1,33 @@
 package com.cuppa.cuppa.domain;
 
-import lombok.*;
+import com.cuppa.cuppa.app.messaging.model.Message;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
-public class Member {
+import javax.persistence.*;
+import java.util.List;
 
-    private static long count = 0L;
+@Entity
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@AllArgsConstructor
+public class Member extends BaseEntity{
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name="member_id")
+    private Long id;
+
     @Getter
-    private final long id;
-    @Getter
-    private final String username;
+    @Column(unique = true, nullable = false)
+    private String username;
+
+    public Long getId() {
+        return id;
+    }
 
     public Member(String username) {
-        this.id = ++count;
         this.username = username;
     }
 

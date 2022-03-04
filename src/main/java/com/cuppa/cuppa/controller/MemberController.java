@@ -1,7 +1,7 @@
 package com.cuppa.cuppa.controller;
 
-import com.cuppa.cuppa.app.messaging.storage.MemberRepository;
 import com.cuppa.cuppa.domain.Member;
+import com.cuppa.cuppa.service.MemberService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -9,28 +9,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Set;
+import java.util.List;
 
 @Slf4j
 @RestController
 @CrossOrigin
 public class MemberController {
 
+    private final MemberService memberService;
+
+    public MemberController(MemberService memberService) {
+        this.memberService = memberService;
+    }
+
     @GetMapping("/registration/{username}")
     public ResponseEntity<Void> register(@PathVariable String username) {
-        System.out.println("handleing register user request: " + username);
-        try {
-            MemberRepository.getInstance().setMember(username);
-        } catch (Exception e) {
-            return ResponseEntity.badRequest().build();
-        }
+        System.out.println("handling register user request: " + username);
+        memberService.join(new Member(username));
         return ResponseEntity.ok().build();
     }
 
     @GetMapping("/fetchAllUsers")
-    public Set<String> fetchAll() {
-        Set<String> response = MemberRepository.getInstance().getUsernames();
-        log.info("response={}", response);
-        return response;
+    public List<String> fetchAll() {
+        List<String> allUsernames = memberService.findAllUsernames();
+        log.info("response={}", allUsernames);
+        return allUsernames;
     }
 }
