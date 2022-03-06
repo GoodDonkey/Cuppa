@@ -15,7 +15,6 @@ import java.util.List;
 
 @Slf4j
 @Controller
-@CrossOrigin(origins = "*", allowedHeaders = "*")
 public class MemberController {
 
     private final MemberService memberService;
@@ -46,10 +45,9 @@ public class MemberController {
     @GetMapping("/members/getUsername")
     @ResponseBody
     public String getUsername(@Login Member loginMember) {
+        log.info("loginMember={}", loginMember);
         return loginMember.getUsername();
-        
     }
-    
     
     @GetMapping("/members/add")
     public String addForm(@ModelAttribute("member") Member member) {

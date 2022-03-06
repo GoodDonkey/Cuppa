@@ -24,7 +24,6 @@ import javax.validation.Valid;
 public class LoginController {
     
     private final LoginService loginService;
-    private final SessionManager sessionManager;
     
     @GetMapping("/login")
     public String loginForm(@ModelAttribute("loginForm") LoginForm form) {
@@ -48,10 +47,7 @@ public class LoginController {
             return "login/loginForm";
         }
         
-        // 로그인 성공 처리
-        // 세션이 있으면 그 세션을, 없으면 생성하여 반환한다.
         HttpSession session = request.getSession();
-        // 세션에 로그인 회원 정보 보관
         session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
         
         // redirectURL 가 있으면 거기로, 없으면 defaultValue인 "/" 로 보낸다.
