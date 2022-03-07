@@ -1,17 +1,13 @@
 package com.cuppa.cuppa.interceptor;
 
-import com.cuppa.cuppa.exceptions.UnauthorizedException;
 import com.cuppa.cuppa.session.SessionConst;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.cors.CorsUtils;
 import org.springframework.web.servlet.HandlerInterceptor;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Enumeration;
-import java.util.Iterator;
 
 @Slf4j
 public class LoginCheckInterceptor implements HandlerInterceptor {
@@ -31,9 +27,9 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
             log.info("미인증 사용자 요청");
             // TODO: json 반환일 때 더 나은 방법을 찾아야 함:
             //  1. 리다이렉트 할 수 있는 방법?
-            //  2. json 반환인지 확인하는 더 나은 방법은?
-            if (request.getHeader("accept").contains("application/json")) {
-                log.debug("accept: {}", request.getHeader("accept"));
+            //  2. json 반환인지 확인하는 더 나은 방법은? accept header 확인하면 프론트에서 에러남
+            if (request.getHeader("content-type").contains("application/json")) {
+                log.debug("content-type: {}", request.getHeader("accept"));
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
                 return false;
             }

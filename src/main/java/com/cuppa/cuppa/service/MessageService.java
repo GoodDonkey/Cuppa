@@ -1,16 +1,13 @@
 package com.cuppa.cuppa.service;
 
-import com.cuppa.cuppa.app.messaging.event.MessageEvent;
+import com.cuppa.cuppa.app.messaging.event.MessageSaveEvent;
 import com.cuppa.cuppa.app.messaging.model.Message;
-import com.cuppa.cuppa.domain.Member;
-import com.cuppa.cuppa.repository.MemberRepository;
 import com.cuppa.cuppa.repository.MessageRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -28,9 +25,9 @@ public class MessageService {
     
     @EventListener
     @Transactional
-    public void saveMessageEvent(MessageEvent messageEvent) {
-        log.debug("messageEvent={}", messageEvent);
-        Message message = messageEvent.getMessage();
+    public void saveMessageEvent(MessageSaveEvent messageSaveEvent) {
+        log.debug("messageEvent={}", messageSaveEvent);
+        Message message = messageSaveEvent.getMessage();
         
         Message savedMessage = messageRepository.save(message);
         log.debug("savedMessage={}", savedMessage);

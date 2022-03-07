@@ -3,12 +3,12 @@ package com.cuppa.cuppa.app.messaging.event;
 import com.cuppa.cuppa.app.messaging.model.Message;
 import com.cuppa.cuppa.domain.Member;
 
-public class MessageEvent {
+public class MessageSaveEvent {
 
     private final Member member;
     private final Message message;
 
-    public MessageEvent(Member member, Message message) {
+    public MessageSaveEvent(Member member, Message message) {
         this.member = member;
         this.message = message;
     }

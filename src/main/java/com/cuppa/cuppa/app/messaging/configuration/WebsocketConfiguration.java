@@ -15,7 +15,6 @@ public class WebsocketConfiguration implements WebSocketMessageBrokerConfigurer 
         registry.addEndpoint("/stomp/chat") // handshake 담당 url
                 .setAllowedOriginPatterns("*")
                 .withSockJS();
-;
     }
 
     @Override

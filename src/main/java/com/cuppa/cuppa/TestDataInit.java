@@ -30,8 +30,14 @@ public class TestDataInit {
         member2.setPassword("asd");
         member2.setUsername("newUser");
     
+        Member member3 = new Member();
+        member3.setLoginId("qwe");
+        member3.setPassword("qwe!");
+        member3.setUsername("qweUser");
+    
         memberRepository.save(member);
         memberRepository.save(member2);
+        memberRepository.save(member3);
         
     }
 

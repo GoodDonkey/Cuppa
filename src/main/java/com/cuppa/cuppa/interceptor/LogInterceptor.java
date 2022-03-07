@@ -29,11 +29,9 @@ public class LogInterceptor implements HandlerInterceptor {
         String uuid = UUID.randomUUID().toString();
         
         request.setAttribute(LOG_ID, uuid);
-    
-        // @RequestMapping: HandlerMethod 사용함
-        // 정적 리소스: ResourceHttpRequestHandler 사용
+        
         if (handler instanceof HandlerMethod) {
-            HandlerMethod hm = (HandlerMethod) handler; // 호출할 컨트롤러 메서드의 모든 정보가 포함되어 있음.
+            HandlerMethod hm = (HandlerMethod) handler;
             MethodParameter[] methodParameters = hm.getMethodParameters();
             log.info("methodParameters={}", methodParameters);
         }
