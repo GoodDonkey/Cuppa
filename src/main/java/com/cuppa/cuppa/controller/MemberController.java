@@ -26,18 +26,11 @@ public class MemberController {
         this.memberRepository = memberRepository;
     }
 
-    @GetMapping("/registration/{username}")
-    @ResponseBody
-    public ResponseEntity<Void> register(@PathVariable String username) {
-        System.out.println("handling register user request: " + username);
-        memberService.join(new Member(username));
-        return ResponseEntity.ok().build();
-    }
-
     @GetMapping("/fetchAllUsers")
     @ResponseBody
-    public List<String> fetchAll() {
+    public List<String> fetchAll(@Login Member member) {
         List<String> allUsernames = memberService.findAllUsernames();
+        allUsernames.remove(member.getUsername());
         log.info("response={}", allUsernames);
         return allUsernames;
     }

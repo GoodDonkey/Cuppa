@@ -13,50 +13,36 @@ import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Slf4j
 @Service
 public class MessageService {
 
     private final MessageRepository messageRepository;
-    private final MemberRepository memberRepository;
 
-    public MessageService(MessageRepository messageRepository, MemberRepository memberRepository) {
+    public MessageService(MessageRepository messageRepository) {
         this.messageRepository = messageRepository;
-        this.memberRepository = memberRepository;
     }
-
-    public void saveMessage(String to, Message message) throws Exception {
-        boolean isExists = memberRepository.existsByUsername(to);
-        System.out.println("isExists = " + isExists);
-        if (isExists) {
-            Member member = memberRepository.findByUsername(to).get();
-            messageRepository.save(message);
-        }
-        if (!isExists) {
-            throw new Exception("Member 가 존재하지 않습니다." + to);
-        }
-    }
-
+    
     @EventListener
     @Transactional
-    public void addMemberMessage(MessageEvent messageEvent) {
-        log.info("Event Listened");
+    public void saveMessageEvent(MessageEvent messageEvent) {
         log.debug("messageEvent={}", messageEvent);
-
         Message message = messageEvent.getMessage();
-
+        
         Message savedMessage = messageRepository.save(message);
         log.debug("savedMessage={}", savedMessage);
     }
     
-    public List<Message> fetchAllMessages(String loginUser, String other) {
+    public List<Message> fetchAllMessagesBetween(String loginUser, String other) {
         List<Message> messagesReceived = messageRepository.findMessagesBySenderAndDestination(loginUser, other);
         List<Message> messagesSent = messageRepository.findMessagesBySenderAndDestination(other, loginUser);
         log.debug("messagesReceived={}", messagesReceived);
         log.debug("messagesSent={}", messagesSent);
-        messagesReceived.addAll(messagesSent);
-        messagesReceived.sort(Comparator.comparing(Message::getId));
-        return messagesReceived;
+        return Stream.concat(messagesReceived.stream(), messagesSent.stream())
+                     .sorted(Comparator.comparing(Message::getId))
+                     .collect(Collectors.toList());
     }
 }

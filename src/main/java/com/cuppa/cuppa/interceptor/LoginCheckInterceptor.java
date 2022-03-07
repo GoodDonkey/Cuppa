@@ -33,17 +33,13 @@ public class LoginCheckInterceptor implements HandlerInterceptor {
             //  1. 리다이렉트 할 수 있는 방법?
             //  2. json 반환인지 확인하는 더 나은 방법은?
             if (request.getHeader("accept").contains("application/json")) {
+                log.debug("accept: {}", request.getHeader("accept"));
                 response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
                 return false;
             }
             response.sendRedirect("/login?redirectURL=" + requestURI);
             return false;
         }
-        Enumeration<String> attributeNames = session.getAttributeNames();
-        while (attributeNames.hasMoreElements()) {
-            log.info("session={}", attributeNames.nextElement());
-        }
-    
         return true;
     }
 }

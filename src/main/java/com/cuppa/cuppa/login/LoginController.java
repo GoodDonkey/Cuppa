@@ -31,7 +31,7 @@ public class LoginController {
     }
     
     @PostMapping("/login")
-    public String loginV4(@Valid @ModelAttribute LoginForm form,
+    public String login(@Valid @ModelAttribute LoginForm form,
                           BindingResult bindingResult,
                           @RequestParam(defaultValue = "/") String redirectURL,
                           HttpServletRequest request) {
@@ -55,7 +55,7 @@ public class LoginController {
     }
     
     @PostMapping("logout")
-    public String logoutV3(HttpServletRequest request) {
+    public String logout(HttpServletRequest request) {
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
