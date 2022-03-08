@@ -1,14 +1,12 @@
 package com.cuppa.cuppa.app.messaging.model;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@ToString
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 public class Message {
@@ -25,12 +23,7 @@ public class Message {
 
     @Column
     private String destination;
-
-    @Override
-    public String toString() {
-        String theString =
-                "Message{" + "message='" + message + '\'' + ", sender='" + sender + '\'' + ", destination='" + destination + '\'' + '}';
-        String replaced = theString.replace("\n", "\\n");
-        return replaced;
-    }
+    
+    @Column
+    private boolean checked;
 }

@@ -1,4 +1,4 @@
-package com.cuppa.cuppa.service;
+package com.cuppa.cuppa.app.messaging.service;
 
 import com.cuppa.cuppa.app.messaging.event.MessageSaveEvent;
 import com.cuppa.cuppa.app.messaging.model.Message;
@@ -8,10 +8,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Slf4j
 @Service
@@ -33,13 +30,17 @@ public class MessageService {
         log.debug("savedMessage={}", savedMessage);
     }
     
-    public List<Message> fetchAllMessagesBetween(String loginUser, String other) {
-        List<Message> messagesReceived = messageRepository.findMessagesBySenderAndDestination(loginUser, other);
-        List<Message> messagesSent = messageRepository.findMessagesBySenderAndDestination(other, loginUser);
-        log.debug("messagesReceived={}", messagesReceived);
-        log.debug("messagesSent={}", messagesSent);
-        return Stream.concat(messagesReceived.stream(), messagesSent.stream())
-                     .sorted(Comparator.comparing(Message::getId))
-                     .collect(Collectors.toList());
+//    public List<Message> fetchAllMessagesBetween(String loginUser, String other) {
+//        List<Message> messagesReceived = messageRepository.findMessagesBySenderAndDestination(loginUser, other);
+//        List<Message> messagesSent = messageRepository.findMessagesBySenderAndDestination(other, loginUser);
+//        log.debug("messagesReceived={}", messagesReceived);
+//        log.debug("messagesSent={}", messagesSent);
+//        return Stream.concat(messagesReceived.stream(), messagesSent.stream())
+//                     .sorted(Comparator.comparing(Message::getId))
+//                     .collect(Collectors.toList());
+//    }
+    
+    public List<Message> fetchAllMessages(String chatRoomId) {
+        return messageRepository.findMessagesByDestination(chatRoomId);
     }
 }

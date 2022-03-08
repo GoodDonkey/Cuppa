@@ -7,5 +7,7 @@ import java.util.List;
 
 public interface MessageRepository extends JpaRepository<Message, Long> {
     
-    List<Message> findMessagesBySenderAndDestination(String sender, String destination);
+//    List<Message> findMessagesBySenderAndDestination(String sender, String destination);
+    List<Message> findMessagesByDestination(String destination);
+    
 }
