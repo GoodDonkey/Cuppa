@@ -35,6 +35,11 @@ public class MemberService {
     public List<Member> findAllMembers() {
         return memberRepository.findAll();
     }
+    
+    public List<Member> findAllMembersExceptMe(Member member) {
+        return memberRepository.findAll().stream().filter(m -> !(m.getId().equals(member.getId()))).collect(Collectors.toList());
+    }
+    
 
     public List<String> findAllUsernames() {
         List<String> members = memberRepository.findAll()
@@ -47,6 +52,12 @@ public class MemberService {
 
     public Member findMember(String username) {
         Member member = memberRepository.findByUsername(username).get();
+        log.debug("member={}", member);
+        return member;
+    }
+    
+    public Member findMemberById(Long id) {
+        Member member = memberRepository.findById(id).get();
         log.debug("member={}", member);
         return member;
     }

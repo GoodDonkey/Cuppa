@@ -56,28 +56,28 @@ public class TestDataInit {
         memberRepository.save(member2);
         memberRepository.save(member3);
     
-        ChatRoom chatRoom = new ChatRoom();
-        chatRoom.setName("room1");
-        chatRoomRepository.save(chatRoom);
-
-        ChatRoom chatRoom2 = new ChatRoom();
-        chatRoom2.setName("room2");
-        chatRoomRepository.save(chatRoom2);
-    
-        Message message = new Message(1L, "hh", member.getUsername(),  chatRoom.getName(), false);
-        Message message2 = new Message(2L, "JJ", member2.getUsername(),  chatRoom2.getName(), false);
-    
-    
-        ChatRoomMember chatRoomMember = new ChatRoomMember(1L, chatRoom, member);
-        ChatRoomMember chatRoomMember2 = new ChatRoomMember(2L, chatRoom, member2);
-    
-        ChatRoomMember chatRoomMember3 = new ChatRoomMember(3L, chatRoom2, member2);
-        ChatRoomMember chatRoomMember4 = new ChatRoomMember(4L, chatRoom2, member3);
-    
-        chatRoomMemberRepository.save(chatRoomMember);
-        chatRoomMemberRepository.save(chatRoomMember2);
-        chatRoomMemberRepository.save(chatRoomMember3);
-        chatRoomMemberRepository.save(chatRoomMember4);
+//        ChatRoom chatRoom = new ChatRoom();
+//        chatRoom.setName("room1");
+//        chatRoomRepository.save(chatRoom);
+//
+//        ChatRoom chatRoom2 = new ChatRoom();
+//        chatRoom2.setName("room2");
+//        chatRoomRepository.save(chatRoom2);
+//
+//        Message message = new Message(1L, "hh", member.getUsername(),  chatRoom.getName(), false);
+//        Message message2 = new Message(2L, "JJ", member2.getUsername(),  chatRoom2.getName(), false);
+//
+//
+//        ChatRoomMember chatRoomMember = new ChatRoomMember(1L, chatRoom, member);
+//        ChatRoomMember chatRoomMember2 = new ChatRoomMember(2L, chatRoom, member2);
+//
+//        ChatRoomMember chatRoomMember3 = new ChatRoomMember(3L, chatRoom2, member2);
+//        ChatRoomMember chatRoomMember4 = new ChatRoomMember(4L, chatRoom2, member3);
+//
+//        chatRoomMemberRepository.save(chatRoomMember);
+//        chatRoomMemberRepository.save(chatRoomMember2);
+//        chatRoomMemberRepository.save(chatRoomMember3);
+//        chatRoomMemberRepository.save(chatRoomMember4);
 //
 //        Set<ChatRoom> myChatRooms = chatRoomService.getMyChatRooms(member);
 //        log.info("myChatRooms={}", myChatRooms);

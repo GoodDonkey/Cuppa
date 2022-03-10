@@ -19,10 +19,10 @@ public class Message {
     private String message;
 
     @Column
-    private String sender;
+    private Long senderId;
 
     @Column
-    private String destination;
+    private Long receiverId;
     
     @Column
     private boolean checked;

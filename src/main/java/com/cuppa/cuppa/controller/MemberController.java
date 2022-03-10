@@ -33,11 +33,12 @@ public class MemberController {
 
     @GetMapping("/fetchAllUsers")
     @ResponseBody
-    public List<String> fetchAll(@Login Member member) {
-        List<String> allUsernames = memberService.findAllUsernames();
-        allUsernames.remove(member.getUsername());
-        log.info("response={}", allUsernames);
-        return allUsernames;
+    public List<Member> fetchAll(@Login Member member) {
+    
+        List<Member> allMembers = memberService.findAllMembersExceptMe(member);
+        log.info("allMembers={}", allMembers);
+    
+        return allMembers;
     }
     
     @GetMapping("/members/getUsername")

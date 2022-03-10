@@ -31,16 +31,16 @@ public class MessageController {
     private final ChatRoomService chatRoomService;
     
     @MessageMapping("/chat/{to}")
-    public void sendMessage(@DestinationVariable String to, Message message) throws Exception {
-        Member member = memberService.findMember(to);
+    public void sendMessage(@DestinationVariable Long to, Message message) throws Exception {
+        Member member = memberService.findMemberById(to);
         log.debug("to={}", to);
         publisher.publishEvent(new MessageSaveEvent(member, message));
         simpMessagingTemplate.convertAndSend("/topic/messages/" + to, message);
     }
     
-    @GetMapping("/chat/fetchAllMessages/{destination}")
-    public List<Message> fetchMessages(@PathVariable String destination) {
-        List<Message> messages = messageService.fetchAllMessages(destination);
+    @GetMapping("/chat/fetchAllMessages/{userId}")
+    public List<Message> fetchMessages(@Login Member member, @PathVariable Long userId) {
+        List<Message> messages = messageService.fetchAllMessagesBetween(member.getId(), userId);
         log.debug("messages={}", messages);
         return messages;
     }
