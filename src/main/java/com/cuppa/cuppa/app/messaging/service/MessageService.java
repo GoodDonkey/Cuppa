@@ -2,6 +2,7 @@ package com.cuppa.cuppa.app.messaging.service;
 
 import com.cuppa.cuppa.app.messaging.event.MessageSaveEvent;
 import com.cuppa.cuppa.app.messaging.model.Message;
+import com.cuppa.cuppa.app.messaging.model.MessageTransferDTO;
 import com.cuppa.cuppa.repository.MessageRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.event.EventListener;
@@ -34,8 +35,8 @@ public class MessageService {
     }
     
     public List<Message> fetchAllMessagesBetween(Long loginUserId, Long otherId) {
-        List<Message> messagesReceived = messageRepository.findMessagesById(loginUserId);
-        List<Message> messagesSent = messageRepository.findMessagesById(otherId);
+        List<Message> messagesReceived = messageRepository.findAllBySenderIdAndReceiverId(loginUserId, otherId);
+        List<Message> messagesSent = messageRepository.findAllBySenderIdAndReceiverId(otherId, loginUserId);
         log.debug("messagesReceived={}", messagesReceived);
         log.debug("messagesSent={}", messagesSent);
         return Stream.concat(messagesReceived.stream(), messagesSent.stream())
@@ -43,7 +44,7 @@ public class MessageService {
                      .collect(Collectors.toList());
     }
     
-    public List<Message> fetchAllMessages(String chatRoomId) {
-        return messageRepository.findMessagesByDestination(chatRoomId);
-    }
+//    public List<Message> fetchAllMessages(String chatRoomId) {
+//        return messageRepository.findMessagesByDestination(chatRoomId);
+//    }
 }
