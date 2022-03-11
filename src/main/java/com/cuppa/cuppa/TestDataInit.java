@@ -1,23 +1,15 @@
 package com.cuppa.cuppa;
 
-import com.cuppa.cuppa.app.messaging.model.ChatRoom;
-import com.cuppa.cuppa.app.messaging.model.ChatRoomMember;
-import com.cuppa.cuppa.app.messaging.model.Message;
-import com.cuppa.cuppa.app.messaging.repository.ChatRoomMemberRepository;
-import com.cuppa.cuppa.app.messaging.service.ChatRoomService;
-import com.cuppa.cuppa.domain.Member;
-import com.cuppa.cuppa.repository.ChatRoomRepository;
-import com.cuppa.cuppa.repository.MemberRepository;
+import com.cuppa.cuppa.messaging.repository.ChatRoomMemberRepository;
+import com.cuppa.cuppa.messaging.service.ChatRoomService;
+import com.cuppa.cuppa.main.domain.Member;
+import com.cuppa.cuppa.messaging.repository.ChatRoomRepository;
+import com.cuppa.cuppa.main.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.jni.Time;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 
 @Slf4j
