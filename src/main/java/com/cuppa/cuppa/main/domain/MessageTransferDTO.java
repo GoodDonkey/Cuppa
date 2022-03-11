@@ -1,6 +1,5 @@
-package com.cuppa.cuppa.messaging.model;
+package com.cuppa.cuppa.main.domain;
 
-import com.cuppa.cuppa.main.domain.MemberTransferDTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

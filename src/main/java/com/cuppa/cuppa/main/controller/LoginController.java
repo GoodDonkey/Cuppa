@@ -1,4 +1,4 @@
-package com.cuppa.cuppa.login.controller;
+package com.cuppa.cuppa.main.controller;
 
 import com.cuppa.cuppa.login.service.LoginService;
 import com.cuppa.cuppa.login.form.LoginForm;

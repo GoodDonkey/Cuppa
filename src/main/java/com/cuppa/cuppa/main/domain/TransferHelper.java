@@ -1,7 +1,6 @@
 package com.cuppa.cuppa.main.domain;
 
 import com.cuppa.cuppa.messaging.model.Message;
-import com.cuppa.cuppa.messaging.model.MessageTransferDTO;
 import com.cuppa.cuppa.main.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
