@@ -28,13 +28,13 @@ public class MessageController {
     private final ApplicationEventPublisher publisher;
     private final SimpMessagingTemplate simpMessagingTemplate;
     private final MessageService messageService;
-    private final MessageMapper MessageMapper;
+    private final MessageMapper messageMapper;
     
     @MessageMapping("/chat/{to}")
     public void sendMessage(@DestinationVariable Long to, Message message) throws Exception {
         log.debug("to={}", to);
         publisher.publishEvent(new MessageSaveEvent(message));
-        simpMessagingTemplate.convertAndSend("/topic/messages/" + to, MessageMapper.toDTO(message));
+        simpMessagingTemplate.convertAndSend("/topic/messages/" + to, messageMapper.map(message));
     }
     
     @GetMapping("/chat/fetchAllMessages/{userId}")
@@ -43,7 +43,7 @@ public class MessageController {
         log.debug("messages={}", messages);
     
         return messages.stream()
-                .map(MessageMapper::toDTO)
+                .map(messageMapper::map)
                 .collect(Collectors.toList());
     }
 }

@@ -1,6 +1,7 @@
 package com.cuppa.cuppa.main.domain;
 
 import com.cuppa.cuppa.messaging.model.ChatRoomMember;
+import com.cuppa.cuppa.utils.dto.MappableEntity;
 import lombok.*;
 
 import javax.persistence.*;
@@ -12,7 +13,7 @@ import java.util.Set;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member extends BaseEntity{
+public class Member extends BaseEntity implements MappableEntity<MemberDTO> {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -36,8 +37,12 @@ public class Member extends BaseEntity{
     @ToString.Exclude
     private Set<ChatRoomMember> chatRoomMembers;
     
-    public MemberDTO toDTO() {
-        return new MemberDTO(this);
+    @Override
+    public MemberDTO toSimpleDTO() {
+        MemberDTO memberDTO = new MemberDTO();
+        memberDTO.setId(id);
+        memberDTO.setUsername(username);
+        return memberDTO;
     }
 }
 

@@ -9,5 +9,5 @@ import javax.persistence.MappedSuperclass;
 @Getter
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
-public abstract class BaseEntity implements MappableEntity{
+public abstract class BaseEntity{
 }
