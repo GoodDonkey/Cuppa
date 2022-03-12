@@ -9,11 +9,11 @@ import lombok.ToString;
 @Setter
 @NoArgsConstructor
 @ToString
-public class MessageTransferDTO {
+public class MessageDTO implements TransferObject{
     
     private Long id;
     private String message;
-    private MemberTransferDTO sender;
-    private MemberTransferDTO receiver;
+    private MemberDTO sender;
+    private MemberDTO receiver;
     private boolean checked;
 }

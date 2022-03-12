@@ -7,12 +7,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-public class MemberTransferDTO {
+public class MemberDTO implements TransferObject{
     
     private Long id;
     private String username;
     
-    public MemberTransferDTO(Member member) {
+    public MemberDTO(Member member) {
         this.id = member.getId();
         this.username = member.getUsername();
     }

@@ -2,8 +2,8 @@ package com.cuppa.cuppa.main.controller;
 
 import com.cuppa.cuppa.login.argumentresolver.Login;
 import com.cuppa.cuppa.main.domain.Member;
-import com.cuppa.cuppa.main.domain.MessageTransferDTO;
-import com.cuppa.cuppa.main.domain.TransferHelper;
+import com.cuppa.cuppa.main.domain.MessageDTO;
+import com.cuppa.cuppa.main.domain.MessageMapper;
 import com.cuppa.cuppa.messaging.event.MessageSaveEvent;
 import com.cuppa.cuppa.messaging.model.Message;
 import com.cuppa.cuppa.messaging.service.MessageService;
@@ -28,22 +28,22 @@ public class MessageController {
     private final ApplicationEventPublisher publisher;
     private final SimpMessagingTemplate simpMessagingTemplate;
     private final MessageService messageService;
-    private final TransferHelper transferHelper;
+    private final MessageMapper MessageMapper;
     
     @MessageMapping("/chat/{to}")
     public void sendMessage(@DestinationVariable Long to, Message message) throws Exception {
         log.debug("to={}", to);
         publisher.publishEvent(new MessageSaveEvent(message));
-        simpMessagingTemplate.convertAndSend("/topic/messages/" + to, transferHelper.getMessageTransferDTO(message));
+        simpMessagingTemplate.convertAndSend("/topic/messages/" + to, MessageMapper.translate(message));
     }
     
     @GetMapping("/chat/fetchAllMessages/{userId}")
-    public List<MessageTransferDTO> fetchMessages(@Login Member member, @PathVariable Long userId) {
+    public List<MessageDTO> fetchMessages(@Login Member member, @PathVariable Long userId) {
         List<Message> messages = messageService.fetchAllMessagesBetween(member.getId(), userId);
         log.debug("messages={}", messages);
     
         return messages.stream()
-                .map(transferHelper::getMessageTransferDTO)
+                .map(MessageMapper::translate)
                 .collect(Collectors.toList());
     }
 }

@@ -2,8 +2,9 @@ package com.cuppa.cuppa.main.controller;
 
 import com.cuppa.cuppa.login.argumentresolver.Login;
 import com.cuppa.cuppa.main.domain.Member;
-import com.cuppa.cuppa.main.domain.MemberTransferDTO;
-import com.cuppa.cuppa.main.domain.TransferHelper;
+import com.cuppa.cuppa.main.domain.MemberDTO;
+import com.cuppa.cuppa.main.domain.MemberMapper;
+import com.cuppa.cuppa.main.domain.MessageMapper;
 import com.cuppa.cuppa.main.repository.MemberRepository;
 import com.cuppa.cuppa.main.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -26,17 +27,18 @@ public class MemberController {
 
     private final MemberService memberService;
     private final MemberRepository memberRepository;
-    private final TransferHelper transferHelper;
+    private final MessageMapper messageMapper;
+    private final MemberMapper memberMapper;
 
     @GetMapping("/fetchAllUsers")
     @ResponseBody
-    public List<MemberTransferDTO> fetchAll(@Login Member member) {
+    public List<MemberDTO> fetchAll(@Login Member member) {
     
         List<Member> allMembers = memberService.findAllMembersExceptMe(member);
         log.info("allMembers={}", allMembers);
     
         return allMembers.stream()
-                .map(m -> transferHelper.getMemberTransferDTOById(m.getId()))
+                .map(m -> memberMapper.translateById(m.getId()))
                 .collect(Collectors.toList());
     }
     
