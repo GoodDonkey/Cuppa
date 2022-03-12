@@ -35,5 +35,9 @@ public class Member extends BaseEntity{
     @OneToMany(mappedBy = "member")
     @ToString.Exclude
     private Set<ChatRoomMember> chatRoomMembers;
+    
+    public MemberDTO toDTO() {
+        return new MemberDTO(this);
+    }
 }
 

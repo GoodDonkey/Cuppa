@@ -38,7 +38,7 @@ public class MemberController {
         log.info("allMembers={}", allMembers);
     
         return allMembers.stream()
-                .map(m -> memberMapper.translateById(m.getId()))
+                .map(Member::toDTO)
                 .collect(Collectors.toList());
     }
     

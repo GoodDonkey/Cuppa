@@ -13,12 +13,12 @@ public class MemberMapper implements DTOMapper<MemberDTO, Member>{
     private final MemberRepository memberRepository;
     
     @Override
-    public MemberDTO translate(Member member) {
+    public MemberDTO toDTO(Member member) {
         log.debug("member={}", member);
-        return new MemberDTO(member);
+        return member.toDTO();
     }
     
-    public MemberDTO translateById(Long id) {
-        return new MemberDTO(memberRepository.getById(id));
+    public MemberDTO toDTOById(Long id) {
+        return new MemberDTO(memberRepository.findById(id).get());
     }
 }
