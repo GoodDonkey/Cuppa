@@ -1,6 +1,6 @@
 package com.cuppa.cuppa.main.controller;
 
-import com.cuppa.cuppa.login.service.LoginService;
+import com.cuppa.cuppa.main.service.LoginService;
 import com.cuppa.cuppa.login.form.LoginForm;
 import com.cuppa.cuppa.main.domain.Member;
 import com.cuppa.cuppa.main.session.SessionConst;

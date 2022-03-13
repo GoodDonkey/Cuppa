@@ -1,5 +1,6 @@
-package com.cuppa.cuppa.login.service;
+package com.cuppa.cuppa.main.service;
 
+import com.cuppa.cuppa.login.service.ILoginService;
 import com.cuppa.cuppa.main.domain.Member;
 import com.cuppa.cuppa.main.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
@@ -7,7 +8,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class LoginService {
+public class LoginService implements ILoginService<Member> {
+    
     private final MemberRepository memberRepository;
     
     public Member login(String loginId, String password) {
