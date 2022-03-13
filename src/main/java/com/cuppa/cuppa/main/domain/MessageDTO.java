@@ -6,6 +6,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,5 +19,6 @@ public class MessageDTO implements TransferObject {
     private String message;
     private MemberDTO sender;
     private MemberDTO receiver;
+    private LocalDateTime createdAt;
     private boolean checked;
 }

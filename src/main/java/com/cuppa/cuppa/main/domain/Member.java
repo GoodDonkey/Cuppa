@@ -1,5 +1,6 @@
 package com.cuppa.cuppa.main.domain;
 
+import com.cuppa.cuppa.login.domain.LoginEntity;
 import com.cuppa.cuppa.messaging.model.ChatRoomMember;
 import com.cuppa.cuppa.utils.dto.MappableEntity;
 import lombok.*;
@@ -13,7 +14,7 @@ import java.util.Set;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member extends BaseEntity implements MappableEntity<MemberDTO> {
+public class Member extends LoginEntity implements MappableEntity<MemberDTO> {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -23,15 +24,7 @@ public class Member extends BaseEntity implements MappableEntity<MemberDTO> {
     
     @Getter
     @Column(unique = true, nullable = false)
-    private String loginId;
-    
-    @Getter
-    @Column(unique = true, nullable = false)
     private String username;
-    
-    @Getter
-    @Column(nullable = false)
-    private String password;
     
     @OneToMany(mappedBy = "member")
     @ToString.Exclude

@@ -1,9 +1,12 @@
 package com.cuppa.cuppa.messaging.model;
 
-import com.cuppa.cuppa.main.domain.BaseEntity;
-import com.cuppa.cuppa.utils.dto.MappableEntity;
 import com.cuppa.cuppa.main.domain.MessageDTO;
-import lombok.*;
+import com.cuppa.cuppa.main.domain.TimeEntity;
+import com.cuppa.cuppa.utils.dto.MappableEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -12,7 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Message extends BaseEntity implements MappableEntity<MessageDTO> {
+public class Message extends TimeEntity implements MappableEntity<MessageDTO> {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

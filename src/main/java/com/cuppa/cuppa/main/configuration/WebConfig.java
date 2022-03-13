@@ -1,7 +1,7 @@
 package com.cuppa.cuppa.main.configuration;
 
 import com.cuppa.cuppa.login.argumentresolver.LoginMemberArgumentResolver;
-import com.cuppa.cuppa.login.interceptor.LogInterceptor;
+import com.cuppa.cuppa.utils.log.LogInterceptor;
 import com.cuppa.cuppa.login.interceptor.LoginCheckInterceptor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.method.support.HandlerMethodArgumentResolver;
