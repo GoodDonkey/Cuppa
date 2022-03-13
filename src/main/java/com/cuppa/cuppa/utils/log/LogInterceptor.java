@@ -1,4 +1,4 @@
-package com.cuppa.cuppa.login.interceptor;
+package com.cuppa.cuppa.utils.log;
 
 import com.cuppa.cuppa.main.session.SessionConst;
 import lombok.extern.slf4j.Slf4j;
