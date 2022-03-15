@@ -13,6 +13,7 @@ import org.springframework.web.servlet.resource.ResourceResolver;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.Arrays;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.UUID;
@@ -33,7 +34,7 @@ public class LogInterceptor implements HandlerInterceptor {
         if (handler instanceof HandlerMethod) {
             HandlerMethod hm = (HandlerMethod) handler;
             MethodParameter[] methodParameters = hm.getMethodParameters();
-            log.info("methodParameters={}", methodParameters);
+            log.info("methodParameters={}", Arrays.toString(methodParameters));
         }
     
         if (handler instanceof ResourceHttpRequestHandler) {
