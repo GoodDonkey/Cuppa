@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  db-mysql:
+    container_name: cuppa-db
+    image: mysql
+    environment:
+      MYSQL_DATABASE: cuppa
+      MYSQL_ROOT_PASSWORD: admin
+    ports:
+      - 3306:3306
+    networks:
+      - springboot-mysql-net
+  application:
+    container_name: cuppa-backend
+    build: .
+    restart: on-failure
+    ports:
+      - 8080:8080
+    depends_on:
+      - db-mysql
+    networks:
+      - springboot-mysql-net
+
+networks:
+  springboot-mysql-net:
+    driver: bridge

@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    default: dev
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
+logging:
+  level:
+    com:
+      cuppa:
+        cuppa: debug
