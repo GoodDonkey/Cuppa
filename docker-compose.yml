@@ -8,9 +8,10 @@ services:
       MYSQL_DATABASE: cuppa
       MYSQL_ROOT_PASSWORD: admin
     ports:
-      - 3306:3306
+      - 3307:3307
     networks:
       - springboot-mysql-net
+
   application:
     container_name: cuppa-backend
     build: .
@@ -19,8 +20,19 @@ services:
       - 8080:8080
     depends_on:
       - db-mysql
+      - rabbitmq
     networks:
       - springboot-mysql-net
+
+  rabbitmq:
+    container_name: cuppa-mq
+    image: rabbitmq:management
+    environment:
+      RABBITMQ_DEFAULT_USER: cuppamq
+      RABBITMQ_DEFAULT_PASS: cuppaadmin
+    ports:
+      - "5672:5672"
+      - "15672:15672"
 
 networks:
   springboot-mysql-net:

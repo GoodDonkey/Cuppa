@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://cuppa-db:3306/cuppa?useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://cuppa-db:3307/cuppa?useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
     username: root
     password: admin
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -13,6 +13,12 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
+
+  rabbitmq:
+    host: cuppa-mq
+    port: 5672
+    username: cuppamq
+    password: cuppaadmin
 
 logging:
   level:
