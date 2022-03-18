@@ -23,6 +23,12 @@ public class WebsocketConfiguration implements WebSocketMessageBrokerConfigurer 
         registry.setPathMatcher(new AntPathMatcher("."));
         registry.setApplicationDestinationPrefixes("/app"); // send 요청 처리
 //        registry.enableSimpleBroker("/topic"); // 이 경로를 subscribe하는 client에게 메시지를 전달
-        registry.enableStompBrokerRelay("/queue", "/topic", "/exchange", "/amq/queue");
+        registry.enableStompBrokerRelay("/queue", "/topic", "/exchange", "/amq/queue")
+                .setRelayHost("localhost")
+                .setRelayPort(61613)
+                .setClientLogin("cuppamq")
+                .setClientPasscode("cuppaadmin")
+                .setSystemLogin("cuppamq")
+                .setSystemPasscode("cuppaadmin");
     }
 }
