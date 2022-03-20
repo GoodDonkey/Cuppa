@@ -51,6 +51,7 @@ public class WebConfig implements WebMvcConfigurer {
     
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        // Spring Boot 2.6 과 Swagger 의 호환 문제: Swagger ui 리소스를 찾지 못하는 이슈 떄문에 추가함.
         registry.addResourceHandler(CLASSPATH_PATH_PATTERNS).addResourceLocations(CLASSPATH_RESOURCE_LOCATIONS);
     }
 }

@@ -30,14 +30,19 @@ public class MessageController {
     private final MessageService messageService;
     private final MessageMapper messageMapper;
     
+    /**
+     * SimpMessagingTemplate 을 사용하는 메시지 엔드포인트.
+     * @param to : 상대방 id
+     * @param message : 메시지 내용
+     */
     @MessageMapping("/chat/{to}")
-    public void sendMessage(@DestinationVariable Long to, Message message) throws Exception {
+    public void sendMessage(@DestinationVariable Long to, Message message) {
         log.debug("to={}", to);
         publisher.publishEvent(new MessageSaveEvent(message));
         simpMessagingTemplate.convertAndSend("/topic/messages/" + to, messageMapper.map(message));
     }
     
-    @GetMapping("/chat/fetchAllMessages/{userId}")
+    @GetMapping("/messages/{userId}")
     public List<MessageDTO> fetchMessages(@Login Member member, @PathVariable Long userId) {
         List<Message> messages = messageService.fetchAllMessagesBetween(member.getId(), userId);
         log.debug("messages={}", messages);

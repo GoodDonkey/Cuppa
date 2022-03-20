@@ -26,7 +26,7 @@ public class MemberController {
     private final MemberService memberService;
     private final MemberRepository memberRepository;
 
-    @GetMapping("/fetchAllUsers")
+    @GetMapping("/members")
     @ResponseBody
     public List<MemberDTO> fetchAll(@Login Member member) {
     
@@ -38,14 +38,14 @@ public class MemberController {
                 .collect(Collectors.toList());
     }
     
-    @GetMapping("/members/getUsername")
+    @GetMapping("/members/username")
     @ResponseBody
     public String getUsername(@Login Member loginMember) {
         log.info("loginMember={}", loginMember);
         return loginMember.getUsername();
     }
     
-    @GetMapping("/members/getUserId")
+    @GetMapping("/members/userId")
     @ResponseBody
     public Long getUserId(@Login Member loginMember) {
         log.info("loginMember={}", loginMember);
