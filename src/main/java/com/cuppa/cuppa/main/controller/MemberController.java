@@ -2,7 +2,7 @@ package com.cuppa.cuppa.main.controller;
 
 import com.cuppa.cuppa.login.argumentresolver.Login;
 import com.cuppa.cuppa.main.domain.Member;
-import com.cuppa.cuppa.main.domain.MemberDTO;
+import com.cuppa.cuppa.main.dto.MemberDTO;
 import com.cuppa.cuppa.main.repository.MemberRepository;
 import com.cuppa.cuppa.main.service.MemberService;
 import lombok.RequiredArgsConstructor;

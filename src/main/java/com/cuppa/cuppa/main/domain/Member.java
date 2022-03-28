@@ -1,6 +1,7 @@
 package com.cuppa.cuppa.main.domain;
 
 import com.cuppa.cuppa.login.domain.LoginEntity;
+import com.cuppa.cuppa.main.dto.MemberDTO;
 import com.cuppa.cuppa.messaging.model.ChatRoomMember;
 import com.cuppa.cuppa.utils.dto.MappableEntity;
 import lombok.*;

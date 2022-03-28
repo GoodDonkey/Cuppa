@@ -2,8 +2,8 @@ package com.cuppa.cuppa.main.controller;
 
 import com.cuppa.cuppa.login.argumentresolver.Login;
 import com.cuppa.cuppa.main.domain.Member;
-import com.cuppa.cuppa.main.domain.MessageDTO;
-import com.cuppa.cuppa.main.domain.MessageMapper;
+import com.cuppa.cuppa.main.dto.MessageDTO;
+import com.cuppa.cuppa.main.dto.MessageMapper;
 import com.cuppa.cuppa.messaging.event.MessageSaveEvent;
 import com.cuppa.cuppa.messaging.model.Message;
 import com.cuppa.cuppa.messaging.service.MessageService;

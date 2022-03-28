@@ -1,5 +1,7 @@
-package com.cuppa.cuppa.main.domain;
+package com.cuppa.cuppa.main.dto;
 
+import com.cuppa.cuppa.main.domain.Member;
+import com.cuppa.cuppa.main.dto.MemberDTO;
 import com.cuppa.cuppa.main.repository.MemberRepository;
 import com.cuppa.cuppa.utils.dto.DTOMapper;
 import lombok.RequiredArgsConstructor;

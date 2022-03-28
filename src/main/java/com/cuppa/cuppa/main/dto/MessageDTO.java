@@ -1,4 +1,4 @@
-package com.cuppa.cuppa.main.domain;
+package com.cuppa.cuppa.main.dto;
 
 import com.cuppa.cuppa.utils.dto.TransferObject;
 import lombok.Getter;
@@ -6,7 +6,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter

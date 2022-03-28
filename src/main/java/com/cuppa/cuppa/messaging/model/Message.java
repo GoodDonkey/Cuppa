@@ -1,6 +1,6 @@
 package com.cuppa.cuppa.messaging.model;
 
-import com.cuppa.cuppa.main.domain.MessageDTO;
+import com.cuppa.cuppa.main.dto.MessageDTO;
 import com.cuppa.cuppa.main.domain.TimeEntity;
 import com.cuppa.cuppa.utils.dto.MappableEntity;
 import lombok.AllArgsConstructor;

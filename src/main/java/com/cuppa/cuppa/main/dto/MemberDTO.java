@@ -1,4 +1,4 @@
-package com.cuppa.cuppa.main.domain;
+package com.cuppa.cuppa.main.dto;
 
 import com.cuppa.cuppa.utils.dto.TransferObject;
 import lombok.Getter;
