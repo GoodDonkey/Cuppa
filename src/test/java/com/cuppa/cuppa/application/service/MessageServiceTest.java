@@ -1,8 +1,8 @@
 package com.cuppa.cuppa.application.service;
 
 import com.cuppa.cuppa.adapter.out.persistence.MessagePersistenceAdapter;
-import com.cuppa.cuppa.application.port.MessageFetchPort;
-import com.cuppa.cuppa.application.port.MessageSavePort;
+import com.cuppa.cuppa.application.port.out.MessageFetchPort;
+import com.cuppa.cuppa.application.port.out.MessageSavePort;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

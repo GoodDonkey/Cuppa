@@ -1,7 +1,7 @@
 package com.cuppa.cuppa.adapter.in.web;
 
-import com.cuppa.cuppa.application.port.MemberFetchUseCase;
-import com.cuppa.cuppa.application.port.MemberSaveUseCase;
+import com.cuppa.cuppa.application.port.in.MemberFetchUseCase;
+import com.cuppa.cuppa.application.port.in.MemberSaveUseCase;
 import com.cuppa.cuppa.application.service.MemberService;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;

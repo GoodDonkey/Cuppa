@@ -1,9 +1,9 @@
 package com.cuppa.cuppa.adapter.out.persistence;
 
-import com.cuppa.cuppa.application.port.MemberFindByIdPort;
-import com.cuppa.cuppa.application.port.MemberFindByLoginIdPort;
-import com.cuppa.cuppa.application.port.MemberFetchPort;
-import com.cuppa.cuppa.application.port.MemberSavePort;
+import com.cuppa.cuppa.application.port.out.MemberFindByIdPort;
+import com.cuppa.cuppa.application.port.out.MemberFindByLoginIdPort;
+import com.cuppa.cuppa.application.port.out.MemberFetchPort;
+import com.cuppa.cuppa.application.port.out.MemberSavePort;
 import com.cuppa.cuppa.domain.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

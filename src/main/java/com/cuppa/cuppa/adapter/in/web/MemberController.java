@@ -1,8 +1,8 @@
 package com.cuppa.cuppa.adapter.in.web;
 
 import com.cuppa.cuppa.adapter.in.web.dto.MemberDTO;
-import com.cuppa.cuppa.application.port.MemberFetchUseCase;
-import com.cuppa.cuppa.application.port.MemberSaveUseCase;
+import com.cuppa.cuppa.application.port.in.MemberFetchUseCase;
+import com.cuppa.cuppa.application.port.in.MemberSaveUseCase;
 import com.cuppa.cuppa.common.argumentresolver.Login;
 import com.cuppa.cuppa.domain.Member;
 import lombok.RequiredArgsConstructor;

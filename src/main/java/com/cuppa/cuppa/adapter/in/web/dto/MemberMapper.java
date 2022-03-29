@@ -1,6 +1,6 @@
 package com.cuppa.cuppa.adapter.in.web.dto;
 
-import com.cuppa.cuppa.application.port.MemberFindByIdPort;
+import com.cuppa.cuppa.application.port.out.MemberFindByIdPort;
 import com.cuppa.cuppa.domain.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

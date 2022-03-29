@@ -1,7 +1,7 @@
 package com.cuppa.cuppa.adapter.out.persistence;
 
-import com.cuppa.cuppa.application.port.MessageFetchPort;
-import com.cuppa.cuppa.application.port.MessageSavePort;
+import com.cuppa.cuppa.application.port.out.MessageFetchPort;
+import com.cuppa.cuppa.application.port.out.MessageSavePort;
 import com.cuppa.cuppa.domain.Message;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

@@ -1,7 +1,7 @@
 package com.cuppa.cuppa.adapter.in.web;
 
 import com.cuppa.cuppa.adapter.in.form.LoginForm;
-import com.cuppa.cuppa.application.port.LoginUseCase;
+import com.cuppa.cuppa.application.port.in.LoginUseCase;
 import com.cuppa.cuppa.domain.Member;
 import com.cuppa.cuppa.common.session.SessionConst;
 import lombok.RequiredArgsConstructor;

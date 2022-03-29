@@ -1,4 +1,4 @@
-package com.cuppa.cuppa.application.port;
+package com.cuppa.cuppa.application.port.in;
 
 import com.cuppa.cuppa.domain.LoginEntity;
 
