@@ -1,7 +1,12 @@
 package com.cuppa.cuppa.application.service;
 
-import com.cuppa.cuppa.adapter.out.persistence.MessageRepository;
+import com.cuppa.cuppa.adapter.in.web.dto.MessageDTO;
+import com.cuppa.cuppa.adapter.in.web.dto.MessageMapper;
 import com.cuppa.cuppa.adapter.out.persistence.MessageSaveEvent;
+import com.cuppa.cuppa.application.port.MessageFetchPort;
+import com.cuppa.cuppa.application.port.MessageFetchUseCase;
+import com.cuppa.cuppa.application.port.MessageSavePort;
+import com.cuppa.cuppa.application.port.MessageSaveUseCase;
 import com.cuppa.cuppa.domain.Message;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -9,33 +14,33 @@ import org.springframework.context.event.EventListener;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import java.util.Comparator;
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Slf4j
 @Service
 @RequiredArgsConstructor
-public class MessageService {
-
-    private final MessageRepository messageRepository;
+@Transactional
+public class MessageService implements MessageFetchUseCase, MessageSaveUseCase {
+    
+    private final MessageSavePort messageSavePort;
+    private final MessageFetchPort messageFetchPort;
+    private final MessageMapper messageMapper;
+    
+    @Override
+    public List<MessageDTO> fetchAll(Long userId, Long otherId) {
+        List<Message> messages = messageFetchPort.fetchAll(userId, otherId);
+        return messages.stream()
+                .map(messageMapper::map)
+                .collect(Collectors.toList());
+    }
     
     @EventListener
     @Async
-    public void saveMessageEvent(MessageSaveEvent messageSaveEvent) {
+    @Override
+    public void save(MessageSaveEvent messageSaveEvent) {
         Message message = messageSaveEvent.getMessage();
-        Message savedMessage = messageRepository.save(message);
-        log.debug("savedMessage={}", savedMessage);
-    }
-    
-    public List<Message> fetchAllMessagesBetween(Long loginUserId, Long otherId) {
-        List<Message> messagesReceived = messageRepository.findAllBySenderIdAndReceiverId(loginUserId, otherId);
-        List<Message> messagesSent = messageRepository.findAllBySenderIdAndReceiverId(otherId, loginUserId);
-        log.debug("messagesReceived={}", messagesReceived);
-        log.debug("messagesSent={}", messagesSent);
-        return Stream.concat(messagesReceived.stream(), messagesSent.stream())
-                     .sorted(Comparator.comparing(Message::getId))
-                     .collect(Collectors.toList());
+        messageSavePort.save(message);
     }
 }

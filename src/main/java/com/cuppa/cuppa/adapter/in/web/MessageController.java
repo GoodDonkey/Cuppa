@@ -44,11 +44,9 @@ public class MessageController {
     
     @GetMapping("/messages/{userId}")
     public List<MessageDTO> fetchMessages(@Login Member member, @PathVariable Long userId) {
-        List<Message> messages = messageService.fetchAllMessagesBetween(member.getId(), userId);
+        List<MessageDTO> messages = messageService.fetchAll(member.getId(), userId);
         log.debug("messages={}", messages);
     
-        return messages.stream()
-                .map(messageMapper::map)
-                .collect(Collectors.toList());
+        return messages;
     }
 }
