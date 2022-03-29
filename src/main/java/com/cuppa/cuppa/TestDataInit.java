@@ -1,10 +1,10 @@
 package com.cuppa.cuppa;
 
-import com.cuppa.cuppa.messaging.repository.ChatRoomMemberRepository;
-import com.cuppa.cuppa.messaging.service.ChatRoomService;
-import com.cuppa.cuppa.main.domain.Member;
-import com.cuppa.cuppa.messaging.repository.ChatRoomRepository;
-import com.cuppa.cuppa.main.repository.MemberRepository;
+import com.cuppa.cuppa.adapter.out.persistence.ChatRoomMemberRepository;
+import com.cuppa.cuppa.adapter.out.persistence.ChatRoomRepository;
+import com.cuppa.cuppa.adapter.out.persistence.MemberRepository;
+import com.cuppa.cuppa.application.service.ChatRoomService;
+import com.cuppa.cuppa.domain.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
