@@ -1,7 +1,5 @@
 package com.cuppa.cuppa.domain;
 
-import com.cuppa.cuppa.adapter.in.web.dto.MappableEntity;
-import com.cuppa.cuppa.adapter.in.web.dto.MessageDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-public class Message extends TimeEntity implements MappableEntity<MessageDTO> {
+public class Message extends TimeEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -31,13 +29,4 @@ public class Message extends TimeEntity implements MappableEntity<MessageDTO> {
     
     @Column
     private boolean checked;
-    
-    @Override
-    public MessageDTO toSimpleDTO() {
-        MessageDTO messageDTO = new MessageDTO();
-        messageDTO.setId(id);
-        messageDTO.setMessage(message);
-        messageDTO.setChecked(checked);
-        return messageDTO;
-    }
 }

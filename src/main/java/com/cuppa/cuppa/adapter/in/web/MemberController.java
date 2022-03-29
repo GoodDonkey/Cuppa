@@ -1,8 +1,8 @@
 package com.cuppa.cuppa.adapter.in.web;
 
 import com.cuppa.cuppa.adapter.in.web.dto.MemberDTO;
-import com.cuppa.cuppa.adapter.out.persistence.MemberRepository;
-import com.cuppa.cuppa.application.service.MemberService;
+import com.cuppa.cuppa.application.port.MemberFetchUseCase;
+import com.cuppa.cuppa.application.port.MemberSaveUseCase;
 import com.cuppa.cuppa.common.argumentresolver.Login;
 import com.cuppa.cuppa.domain.Member;
 import lombok.RequiredArgsConstructor;
@@ -16,26 +16,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
 
-    private final MemberService memberService;
-    private final MemberRepository memberRepository;
+    private final MemberSaveUseCase memberSaveUseCase;
+    private final MemberFetchUseCase memberFetchUseCase;
 
     @GetMapping("/members")
     @ResponseBody
     public List<MemberDTO> fetchAll(@Login Member member) {
-    
-        List<Member> allMembers = memberService.findAllMembersExceptMe(member);
-        log.info("allMembers={}", allMembers);
-    
-        return allMembers.stream()
-                .map(Member::toSimpleDTO)
-                .collect(Collectors.toList());
+        return memberFetchUseCase.findAllMembersExceptMe(member);
     }
     
     @GetMapping("/members/username")
@@ -58,11 +51,11 @@ public class MemberController {
     }
     
     @PostMapping("/members/add")
-    public String save(@Valid @ModelAttribute Member member, BindingResult bindingResult) {
+    public String save(@Valid @ModelAttribute("member") Member member, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
             return "members/addMemberForm";
         }
-        memberRepository.save(member);
+        memberSaveUseCase.save(member);
         return "redirect:/";
     }
 }

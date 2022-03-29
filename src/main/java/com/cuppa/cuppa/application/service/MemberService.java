@@ -1,7 +1,13 @@
 package com.cuppa.cuppa.application.service;
 
-import com.cuppa.cuppa.adapter.out.persistence.MemberRepository;
+import com.cuppa.cuppa.adapter.in.web.dto.MemberDTO;
+import com.cuppa.cuppa.adapter.in.web.dto.MemberMapper;
+import com.cuppa.cuppa.application.port.MemberFetchPort;
+import com.cuppa.cuppa.application.port.MemberFetchUseCase;
+import com.cuppa.cuppa.application.port.MemberSavePort;
+import com.cuppa.cuppa.application.port.MemberSaveUseCase;
 import com.cuppa.cuppa.domain.Member;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -10,24 +16,25 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @Service
-public class MemberService {
-
-    private final MemberRepository memberRepository;
-
-    public MemberService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
+@RequiredArgsConstructor
+public class MemberService implements MemberFetchUseCase, MemberSaveUseCase {
+    
+    private final MemberFetchPort memberFetchPort;
+    private final MemberSavePort memberSavePort;
+    private final MemberMapper memberMapper;
+    
+    @Override
+    public List<MemberDTO> findAllMembersExceptMe(Member member) {
+        List<Member> members = memberFetchPort.fetchAllExceptMe(member);
+        List<MemberDTO> memberDTOs = members.stream()
+                                            .map(memberMapper::toSimpleDTO)
+                                            .collect(Collectors.toList());
+        log.debug("memberDTOs={}", memberDTOs);
+        return memberDTOs;
     }
     
-    public List<Member> findAllMembersExceptMe(Member member) {
-        return memberRepository.findAll()
-                .stream()
-                .filter(m -> !(m.getId().equals(member.getId())))
-                .collect(Collectors.toList());
-    }
-    
-    public Member findMemberById(Long id) {
-        Member member = memberRepository.findById(id).get();
-        log.debug("member={}", member);
-        return member;
+    @Override
+    public void save(Member member) {
+        memberSavePort.save(member);
     }
 }

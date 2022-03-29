@@ -1,7 +1,7 @@
 package com.cuppa.cuppa.adapter.in.web;
 
-import com.cuppa.cuppa.application.service.LoginService;
 import com.cuppa.cuppa.adapter.in.form.LoginForm;
+import com.cuppa.cuppa.application.port.LoginUseCase;
 import com.cuppa.cuppa.domain.Member;
 import com.cuppa.cuppa.common.session.SessionConst;
 import lombok.RequiredArgsConstructor;
@@ -22,7 +22,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class LoginController {
     
-    private final LoginService loginService;
+    private final LoginUseCase<Member> loginUseCase;
     
     @GetMapping("/login")
     public String loginForm(@ModelAttribute("loginForm") LoginForm form) {
@@ -39,7 +39,7 @@ public class LoginController {
             return "login/loginForm";
         }
         
-        Member loginMember = loginService.login(form.getLoginId(), form.getPassword());
+        Member loginMember = loginUseCase.login(form.getLoginId(), form.getPassword());
         
         if (loginMember == null) {
             bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");

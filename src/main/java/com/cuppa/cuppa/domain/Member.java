@@ -1,7 +1,5 @@
 package com.cuppa.cuppa.domain;
 
-import com.cuppa.cuppa.adapter.in.web.dto.MappableEntity;
-import com.cuppa.cuppa.adapter.in.web.dto.MemberDTO;
 import lombok.*;
 
 import javax.persistence.*;
@@ -13,7 +11,7 @@ import java.util.Set;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class Member extends LoginEntity implements MappableEntity<MemberDTO> {
+public class Member extends LoginEntity {
     
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -28,13 +26,5 @@ public class Member extends LoginEntity implements MappableEntity<MemberDTO> {
     @OneToMany(mappedBy = "member")
     @ToString.Exclude
     private Set<ChatRoomMember> chatRoomMembers;
-    
-    @Override
-    public MemberDTO toSimpleDTO() {
-        MemberDTO memberDTO = new MemberDTO();
-        memberDTO.setId(id);
-        memberDTO.setUsername(username);
-        return memberDTO;
-    }
 }
 
