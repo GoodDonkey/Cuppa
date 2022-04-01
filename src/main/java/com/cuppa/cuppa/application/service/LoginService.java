@@ -12,6 +12,7 @@ public class LoginService implements LoginUseCase<Member> {
     
     private final MemberFindByLoginIdPort memberFindByLoginIdPort;
     
+    @Override
     public Member login(String loginId, String password) {
         
         return memberFindByLoginIdPort.findByLoginId(loginId)
