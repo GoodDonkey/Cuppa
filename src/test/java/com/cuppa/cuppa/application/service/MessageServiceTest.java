@@ -12,7 +12,7 @@ import org.springframework.context.ApplicationContext;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(properties = "spring.profiles.active:dev")
+@SpringBootTest(properties = "spring.profiles.active:test")
 @Slf4j
 public class MessageServiceTest {
     

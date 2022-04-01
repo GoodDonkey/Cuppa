@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(properties = "spring.profiles.active:dev")
+@SpringBootTest(properties = "spring.profiles.active:test")
 public class MemberControllerTest {
     @Autowired private MemberSaveUseCase memberSaveUseCase;
     @Autowired private MemberFetchUseCase memberFetchUseCase;
