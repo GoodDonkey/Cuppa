@@ -14,6 +14,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.amqp.support.converter.Jackson2JsonMessageConverter;
 import org.springframework.amqp.support.converter.MessageConverter;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -24,6 +25,15 @@ public class RabbitMQConfig {
     private static final String CHAT_QUEUE_NAME = "chat.queue";
     private static final String CHAT_EXCHANGE_NAME = "chat.exchange";
     private static final String ROUTING_KEY = "to.*";
+    
+    @Value("${infra.rabbitmq.host}")
+    private String RABBITMQ_HOST;
+    
+    @Value("${infra.rabbitmq.username}")
+    private String RABBITMQ_USERNAME;
+    
+    @Value("${infra.rabbitmq.password}")
+    private String RABBITMQ_PASSWORD;
     
     @Bean
     public Queue queue(){ return new Queue(CHAT_QUEUE_NAME, true); }
@@ -60,9 +70,9 @@ public class RabbitMQConfig {
     @Bean
     public ConnectionFactory connectionFactory(){
         CachingConnectionFactory factory = new CachingConnectionFactory();
-        factory.setHost("localhost");
-        factory.setUsername("cuppamq");
-        factory.setPassword("cuppaadmin");
+        factory.setHost(RABBITMQ_HOST);
+        factory.setUsername(RABBITMQ_USERNAME);
+        factory.setPassword(RABBITMQ_PASSWORD);
         return factory;
     }
     

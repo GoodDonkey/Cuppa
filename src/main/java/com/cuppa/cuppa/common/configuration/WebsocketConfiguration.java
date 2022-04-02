@@ -1,5 +1,6 @@
 package com.cuppa.cuppa.common.configuration;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.config.MessageBrokerRegistry;
 import org.springframework.util.AntPathMatcher;
@@ -10,6 +11,15 @@ import org.springframework.web.socket.config.annotation.WebSocketMessageBrokerCo
 @Configuration
 @EnableWebSocketMessageBroker
 public class WebsocketConfiguration implements WebSocketMessageBrokerConfigurer {
+    
+    @Value("${infra.rabbitmq.host}")
+    private String RABBITMQ_HOST;
+    
+    @Value("${infra.rabbitmq.username}")
+    private String RABBITMQ_USERNAME;
+    
+    @Value("${infra.rabbitmq.password}")
+    private String RABBITMQ_PASSWORD;
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
@@ -24,11 +34,11 @@ public class WebsocketConfiguration implements WebSocketMessageBrokerConfigurer 
         registry.setApplicationDestinationPrefixes("/app"); // send 요청 처리
 //        registry.enableSimpleBroker("/topic"); // 이 경로를 subscribe하는 client에게 메시지를 전달
         registry.enableStompBrokerRelay("/queue", "/topic", "/exchange", "/amq/queue")
-                .setRelayHost("localhost")
+                .setRelayHost(RABBITMQ_HOST)
                 .setRelayPort(61613)
-                .setClientLogin("cuppamq")
-                .setClientPasscode("cuppaadmin")
-                .setSystemLogin("cuppamq")
-                .setSystemPasscode("cuppaadmin");
+                .setClientLogin(RABBITMQ_USERNAME)
+                .setClientPasscode(RABBITMQ_PASSWORD)
+                .setSystemLogin(RABBITMQ_USERNAME)
+                .setSystemPasscode(RABBITMQ_PASSWORD);
     }
 }
