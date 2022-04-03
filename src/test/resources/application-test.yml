@@ -28,5 +28,9 @@ logging:
       cuppa:
         cuppa: debug
 
+jasypt:
+  encryptor:
+    password: test
+
 server:
   port: 8082

@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: jdbc:mysql://cuppa-db:3306/cuppa?useSSL=false&useUnicode=true&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
-    username: root
-    password: admin
+    url: ENC(hzpesSTLAO5EZllnW+clrAOwpd0zwLXIaOd/KKB+UcbRAb2zGW/F1CdfAgf0a+o1bSKlE/ILdYKFQY1xblfJLqqmpzMfiubsRw2OcBfPseQ7sjXwIdHtP7gYvXGRdLUU)
+    username: ENC(ENy8xWhahbsmkMCCnXuOzQ==)
+    password: ENC(puT7Hx7MW0op8fr1TuA3Y2fVWI1kP+45)
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   config:
@@ -15,10 +15,10 @@ spring:
     show-sql: true
 
   rabbitmq:
-    host: cuppa-mq
+    host: ENC(7YPHqbRQgeGJ1KRV3wbSGPiILEI+jnTr)
     port: 5672
-    username: cuppamq
-    password: cuppaadmin
+    username: ENC(irStMX3WyMCfzfSDdAkIlQ==)
+    password: ENC(1N6/RPClOiVEUnGRXsReTRLbwO1eb3I7)
 
   mvc:
     pathmatch:
@@ -29,6 +29,10 @@ logging:
     com:
       cuppa:
         cuppa: debug
+
+jasypt:
+  encryptor:
+    bean: encryptorBean
 
 server:
   port: 8080

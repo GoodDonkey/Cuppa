@@ -41,8 +41,14 @@ dependencies {
 	implementation 'com.fasterxml.jackson.core:jackson-databind'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-reactor-netty', version: '2.4.6'
 
+	// swagger
 	implementation group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 	implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+
+	// encryption
+	implementation 'com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4'
+	implementation 'org.bouncycastle:bcprov-jdk15on:1.70'
+
 }
 
 tasks.named('test') {
