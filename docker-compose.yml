@@ -1,16 +1,6 @@
 version: "3.7"
 
 services:
-  db-mysql:
-    container_name: cuppa-db
-    image: mysql
-    environment:
-      MYSQL_DATABASE: cuppa
-      MYSQL_ROOT_PASSWORD: admin
-    ports:
-      - 3306:3306
-    networks:
-      - cuppa-net
 
   rabbitmq:
     container_name: cuppa-mq
@@ -30,11 +20,12 @@ services:
   application:
     container_name: cuppa-backend
     build: .
+    environment:
+      JASPASS: ${JASPASS}
     restart: on-failure
     ports:
       - 8080:8080
     depends_on:
-      - db-mysql
       - rabbitmq
     networks:
       - cuppa-net
