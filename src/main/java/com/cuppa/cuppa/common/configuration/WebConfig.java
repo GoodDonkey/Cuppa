@@ -45,7 +45,11 @@ public class WebConfig implements WebMvcConfigurer {
                                 "http://localhost:5500",
                                 "ws://127.0.0.1:5500/",
                                 "http://localhost:8080/",
-                                "http://127.0.0.1:63342/")
+                                "http://127.0.0.1:63342/",
+                                "http://127.0.0.1:63343/",
+                                "http://localhost:3001/",
+                                "http://127.0.0.1:3001/",
+                                "http://cuppa-chat.vercel.app")
                 .allowedMethods("GET", "POST")
                 .allowCredentials(true).maxAge(3600);
     }
