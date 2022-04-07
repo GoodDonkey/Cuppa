@@ -38,6 +38,26 @@ install_docker_compose()
 
 }
 
+echo "> sudo docker ps" >> /home/ubuntu/cuppa/deploy.log
+sudo docker ps
+echo "> sudo docker-compose down" >> /home/ubuntu/cuppa/deploy.log
+sudo docker-compose down
+
+CONTAINER_ID=$(sudo docker container ls -f "name=cuppa-backend" -q)
+
+echo "> 컨테이너 ID: ${CONTAINER_ID}"
+
+if [ -z ${CONTAINER_ID} ] # 검색된 컨테이너 id가 없으면
+then
+  echo "> 현재 구동중인 컨테이너가 없습니다. 서버를 실행합니다." >> /home/ubuntu/cuppa/deploy.log
+else
+  echo "> docker stop ${CONTAINER_ID}"
+  sudo docker stop ${CONTAINER_ID}
+  echo "> docker rm ${CONTAINER_ID}"
+  sudo docker rm ${CONTAINER_ID}
+  sleep 5
+fi
+
 # docker 설치 확인 및 설치
-docker info && echo "> docker already installed" >> /home/ubuntu/cuppa/deploy.log || install_docker
-docker-compose version && echo "> docker-compose already installed" >> /home/ubuntu/cuppa/deploy.log || install_docker_compose
+sudo docker info && echo "> docker already installed" >> /home/ubuntu/cuppa/deploy.log || install_docker
+sudo docker-compose version && echo "> docker-compose already installed" >> /home/ubuntu/cuppa/deploy.log || install_docker_compose
