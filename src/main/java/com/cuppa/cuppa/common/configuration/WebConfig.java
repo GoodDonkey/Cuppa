@@ -24,13 +24,6 @@ public class WebConfig implements WebMvcConfigurer {
                 .order(1)
                 .addPathPatterns("/**")
                 .excludePathPatterns(logExcludePatterns);
-    
-        String[] loginExcludePatterns = {"/", "/members/add", "/login", "/logout", "/images/**", "/css/**", "/*.ico","/v3/api-docs/**", "/null/**",
-                                         "/chat/**", "/error", "/registration/**", "/topic/**", "/stomp/**", "/app/**", "/swagger-ui/**", "/openapi.json", "/swagger-ui.*", "/swagger-ui.html/**","/webjars/**", "/swagger-resources/**", "/META-INF/**"};
-        registry.addInterceptor(new LoginCheckInterceptor())
-                .order(2)
-                .addPathPatterns("/**")
-                .excludePathPatterns(loginExcludePatterns);
     }
     
     @Override
