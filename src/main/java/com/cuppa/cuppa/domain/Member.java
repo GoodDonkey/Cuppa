@@ -1,10 +1,12 @@
 package com.cuppa.cuppa.domain;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 import java.util.Set;
 
+@SuperBuilder
 @Getter
 @Setter
 @ToString
@@ -22,6 +24,9 @@ public class Member extends LoginEntity {
     @Getter
     @Column(unique = true, nullable = false)
     private String username;
+    
+    @Enumerated(EnumType.STRING)
+    private Role role;
     
     @OneToMany(mappedBy = "member")
     @ToString.Exclude
