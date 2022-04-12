@@ -4,7 +4,9 @@ import com.cuppa.cuppa.adapter.in.web.dto.MemberDTO;
 import com.cuppa.cuppa.application.port.in.MemberFetchUseCase;
 import com.cuppa.cuppa.application.port.in.MemberSaveUseCase;
 import com.cuppa.cuppa.common.argumentresolver.Login;
+import com.cuppa.cuppa.common.argumentresolver.SecurityLogin;
 import com.cuppa.cuppa.domain.Member;
+import com.cuppa.cuppa.domain.SecurityUser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -27,22 +29,22 @@ public class MemberController {
 
     @GetMapping("/members")
     @ResponseBody
-    public List<MemberDTO> fetchAll(@Login Member member) {
-        return memberFetchUseCase.findAllMembersExceptMe(member);
+    public List<MemberDTO> fetchAll(@SecurityLogin SecurityUser member) {
+        return memberFetchUseCase.findAllMembersExceptMe(member.getMember());
     }
     
     @GetMapping("/members/username")
     @ResponseBody
-    public String getUsername(@Login Member loginMember) {
+    public String getUsername(@SecurityLogin SecurityUser loginMember) {
         log.info("loginMember={}", loginMember);
         return loginMember.getUsername();
     }
     
     @GetMapping("/members/userId")
     @ResponseBody
-    public Long getUserId(@Login Member loginMember) {
+    public Long getUserId(@SecurityLogin SecurityUser loginMember) {
         log.info("loginMember={}", loginMember);
-        return loginMember.getId();
+        return loginMember.getMember().getId();
     }
     
     @GetMapping("/members/add")
