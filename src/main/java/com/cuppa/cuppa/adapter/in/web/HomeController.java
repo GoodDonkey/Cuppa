@@ -18,7 +18,7 @@ public class HomeController {
     
     @GetMapping("/")
     public String home(
-            @SecurityLogin SecurityUser loginMember,
+            @SecurityLogin Member loginMember,
             Model model) {
         
         if (loginMember == null) {

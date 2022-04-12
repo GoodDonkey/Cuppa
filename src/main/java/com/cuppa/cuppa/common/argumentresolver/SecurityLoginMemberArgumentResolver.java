@@ -1,6 +1,7 @@
 package com.cuppa.cuppa.common.argumentresolver;
 
 import com.cuppa.cuppa.common.session.SessionConst;
+import com.cuppa.cuppa.domain.Member;
 import com.cuppa.cuppa.domain.SecurityUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.MethodParameter;
@@ -38,9 +39,10 @@ public class SecurityLoginMemberArgumentResolver implements HandlerMethodArgumen
             SecurityContext securityContext = (SecurityContext) session.getAttribute(SessionConst.SPRING_SECURITY_CONTEXT);
             Authentication authentication = securityContext.getAuthentication();
             SecurityUser securityUser = (SecurityUser) authentication.getPrincipal();
-        
-            log.debug("username {} 이 로그인 중입니다.", securityUser.getUsername());
-            return securityUser;
+            Member member = securityUser.getMember();
+            
+            log.debug("username {} 이 로그인 중입니다.", member.getUsername());
+            return member;
     
         } catch (Exception e) {
             log.info("로그인 정보 없는 요청: {}", e.getMessage());

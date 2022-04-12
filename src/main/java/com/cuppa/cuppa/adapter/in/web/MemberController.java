@@ -27,24 +27,24 @@ public class MemberController {
     private final MemberSaveUseCase memberSaveUseCase;
     private final MemberFetchUseCase memberFetchUseCase;
 
-    @GetMapping("/members")
+    @GetMapping("/api/v1/members")
     @ResponseBody
-    public List<MemberDTO> fetchAll(@SecurityLogin SecurityUser member) {
-        return memberFetchUseCase.findAllMembersExceptMe(member.getMember());
+    public List<MemberDTO> fetchAll(@SecurityLogin Member member) {
+        return memberFetchUseCase.findAllMembersExceptMe(member);
     }
     
-    @GetMapping("/members/username")
+    @GetMapping("/api/v1/members/username")
     @ResponseBody
-    public String getUsername(@SecurityLogin SecurityUser loginMember) {
+    public String getUsername(@SecurityLogin Member loginMember) {
         log.info("loginMember={}", loginMember);
         return loginMember.getUsername();
     }
     
-    @GetMapping("/members/userId")
+    @GetMapping("/api/v1/members/userId")
     @ResponseBody
-    public Long getUserId(@SecurityLogin SecurityUser loginMember) {
+    public Long getUserId(@SecurityLogin Member loginMember) {
         log.info("loginMember={}", loginMember);
-        return loginMember.getMember().getId();
+        return loginMember.getId();
     }
     
     @GetMapping("/members/add")
