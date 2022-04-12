@@ -44,16 +44,16 @@ public class LogInterceptor implements HandlerInterceptor {
             log.info("locations={}", locations);
             log.info("resourceResolvers={}", resourceResolvers);
         }
+        
         HttpSession session = request.getSession();
         Enumeration<String> attributeNames = session.getAttributeNames();
-        log.info("session={}", session);
-        log.info("session.getAttribute(SessionConst.LOGIN_MEMBER)={}",
-                 session.getAttribute(SessionConst.LOGIN_MEMBER));
+
         while (attributeNames.hasMoreElements()) {
             String attr = attributeNames.nextElement();
-            log.info("session={}", attr);
-//            log.info("session.getAttribute()={}", session.getAttribute(attr));
+            log.debug("session attr name={}", attr);
+            log.debug("session.getAttribute(attr)={}", session.getAttribute(attr));
         }
+        
         log.info("REQUEST [{}][{}][{}]", uuid, requestURI, handler);
         return true;
     }

@@ -1,6 +1,7 @@
 package com.cuppa.cuppa.common.configuration;
 
 import com.cuppa.cuppa.common.argumentresolver.LoginMemberArgumentResolver;
+import com.cuppa.cuppa.common.argumentresolver.SecurityLoginMemberArgumentResolver;
 import com.cuppa.cuppa.common.interceptor.LogInterceptor;
 import com.cuppa.cuppa.common.interceptor.LoginCheckInterceptor;
 import org.springframework.context.annotation.Configuration;
@@ -29,6 +30,7 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(new LoginMemberArgumentResolver());
+        resolvers.add(new SecurityLoginMemberArgumentResolver());
     }
     
     @Override
