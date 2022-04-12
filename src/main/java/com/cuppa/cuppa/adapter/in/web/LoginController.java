@@ -24,34 +24,34 @@ public class LoginController {
     
     private final LoginUseCase<Member> loginUseCase;
     
-    @GetMapping("/login")
-    public String loginForm(@ModelAttribute("loginForm") LoginForm form) {
-        return "login/loginForm";
-    }
+//    @GetMapping("/login")
+//        public String loginForm(@ModelAttribute("loginForm") LoginForm form) {
+//            return "login/loginForm";
+//    }
     
-    @PostMapping("/login")
-    public String login(@Valid @ModelAttribute LoginForm form,
-                          BindingResult bindingResult,
-                          @RequestParam(defaultValue = "/") String redirectURL,
-                          HttpServletRequest request) {
-        
-        if (bindingResult.hasErrors()) {
-            return "login/loginForm";
-        }
-        
-        Member loginMember = loginUseCase.login(form.getLoginId(), form.getPassword());
-        
-        if (loginMember == null) {
-            bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
-            return "login/loginForm";
-        }
-        
-        HttpSession session = request.getSession();
-        session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
-        
-        // redirectURL 가 있으면 거기로, 없으면 defaultValue인 "/" 로 보낸다.
-        return "redirect:" + redirectURL;
-    }
+//    @PostMapping("/login")
+//    public String login(@Valid @ModelAttribute LoginForm form,
+//                          BindingResult bindingResult,
+//                          @RequestParam(defaultValue = "/") String redirectURL,
+//                          HttpServletRequest request) {
+//
+//        if (bindingResult.hasErrors()) {
+//            return "login/loginForm";
+//        }
+//
+//        Member loginMember = loginUseCase.login(form.getLoginId(), form.getPassword());
+//
+//        if (loginMember == null) {
+//            bindingResult.reject("loginFail", "아이디 또는 비밀번호가 맞지 않습니다.");
+//            return "login/loginForm";
+//        }
+//
+//        HttpSession session = request.getSession();
+//        session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+//
+//        // redirectURL 가 있으면 거기로, 없으면 defaultValue인 "/" 로 보낸다.
+//        return "redirect:" + redirectURL;
+//    }
     
     @PostMapping("logout")
     public String logout(HttpServletRequest request) {

@@ -19,7 +19,7 @@ public class WebConfig implements WebMvcConfigurer {
     
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        String[] logExcludePatterns = {"/css/**", "/*ico", "/registration/**", "/error"};
+        String[] logExcludePatterns = {"/css/**", "/*ico"};
         registry.addInterceptor(new LogInterceptor())
                 .order(1)
                 .addPathPatterns("/**")

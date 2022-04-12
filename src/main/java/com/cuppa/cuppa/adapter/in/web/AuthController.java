@@ -2,17 +2,18 @@ package com.cuppa.cuppa.adapter.in.web;
 
 import com.cuppa.cuppa.adapter.in.form.LoginForm;
 import com.cuppa.cuppa.adapter.in.web.dto.MemberSignupRequestDTO;
+import com.cuppa.cuppa.application.port.in.LoginUseCase;
 import com.cuppa.cuppa.application.port.in.SignupUseCase;
+import com.cuppa.cuppa.common.session.SessionConst;
 import com.cuppa.cuppa.domain.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Slf4j

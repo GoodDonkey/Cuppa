@@ -7,11 +7,10 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @NotNull
-@AllArgsConstructor
 public class MemberSignupRequestDTO {
     
     private String loginId;
     private String password;
     private String username;
-    private Role role;
+    private Role role = Role.ROLE_MEMBER;
 }
