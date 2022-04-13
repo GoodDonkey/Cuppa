@@ -1,6 +1,7 @@
 package com.cuppa.cuppa.common.configuration;
 
 import com.cuppa.cuppa.common.argumentresolver.LoginMemberArgumentResolver;
+import com.cuppa.cuppa.common.argumentresolver.SecurityLoginMemberArgumentResolver;
 import com.cuppa.cuppa.common.interceptor.LogInterceptor;
 import com.cuppa.cuppa.common.interceptor.LoginCheckInterceptor;
 import org.springframework.context.annotation.Configuration;
@@ -19,23 +20,17 @@ public class WebConfig implements WebMvcConfigurer {
     
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        String[] logExcludePatterns = {"/css/**", "/*ico", "/registration/**", "/error"};
+        String[] logExcludePatterns = {"/css/**", "/*ico"};
         registry.addInterceptor(new LogInterceptor())
                 .order(1)
                 .addPathPatterns("/**")
                 .excludePathPatterns(logExcludePatterns);
-    
-        String[] loginExcludePatterns = {"/", "/members/add", "/login", "/logout", "/images/**", "/css/**", "/*.ico","/v3/api-docs/**", "/null/**",
-                                         "/chat/**", "/error", "/registration/**", "/topic/**", "/stomp/**", "/app/**", "/swagger-ui/**", "/openapi.json", "/swagger-ui.*", "/swagger-ui.html/**","/webjars/**", "/swagger-resources/**", "/META-INF/**"};
-        registry.addInterceptor(new LoginCheckInterceptor())
-                .order(2)
-                .addPathPatterns("/**")
-                .excludePathPatterns(loginExcludePatterns);
     }
     
     @Override
     public void addArgumentResolvers(List<HandlerMethodArgumentResolver> resolvers) {
         resolvers.add(new LoginMemberArgumentResolver());
+        resolvers.add(new SecurityLoginMemberArgumentResolver());
     }
     
     @Override

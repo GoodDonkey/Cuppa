@@ -23,17 +23,18 @@ public class WebsocketConfiguration implements WebSocketMessageBrokerConfigurer 
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/stomp/chat") // handshake 담당 url
+        registry.addEndpoint("/api/v1/stomp/chat") // handshake 담당 url
                 .setAllowedOriginPatterns("*")
                 .withSockJS();
     }
 
     @Override
     public void configureMessageBroker(MessageBrokerRegistry registry) {
+        
         registry.setPathMatcher(new AntPathMatcher("."));
         registry.setApplicationDestinationPrefixes("/app"); // send 요청 처리
 //        registry.enableSimpleBroker("/topic"); // 이 경로를 subscribe하는 client에게 메시지를 전달
-        registry.enableStompBrokerRelay("/queue", "/topic", "/exchange", "/amq/queue")
+        registry.enableStompBrokerRelay( "/queue", "/topic", "/exchange", "/amq/queue")
                 .setRelayHost(RABBITMQ_HOST)
                 .setRelayPort(61613)
                 .setClientLogin(RABBITMQ_USERNAME)

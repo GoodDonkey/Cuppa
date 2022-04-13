@@ -5,8 +5,10 @@ import com.cuppa.cuppa.adapter.in.web.dto.MessageMapper;
 import com.cuppa.cuppa.adapter.out.persistence.MessageSaveEvent;
 import com.cuppa.cuppa.application.service.MessageService;
 import com.cuppa.cuppa.common.argumentresolver.Login;
+import com.cuppa.cuppa.common.argumentresolver.SecurityLogin;
 import com.cuppa.cuppa.domain.Member;
 import com.cuppa.cuppa.domain.Message;
+import com.cuppa.cuppa.domain.SecurityUser;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationEventPublisher;
@@ -35,15 +37,16 @@ public class MessageController {
      * @param to : 상대방 id
      * @param message : 메시지 내용
      */
-    @MessageMapping("/chat/{to}")
+    @Deprecated
+    @MessageMapping("/api/v1/chat/{to}")
     public void sendMessage(@DestinationVariable Long to, Message message) {
         log.debug("to={}", to);
         publisher.publishEvent(new MessageSaveEvent(message));
         simpMessagingTemplate.convertAndSend("/topic/messages/" + to, messageMapper.map(message));
     }
     
-    @GetMapping("/messages/{userId}")
-    public List<MessageDTO> fetchMessages(@Login Member member, @PathVariable Long userId) {
+    @GetMapping("/api/v1/messages/{userId}")
+    public List<MessageDTO> fetchMessages(@SecurityLogin Member member, @PathVariable Long userId) {
         List<MessageDTO> messages = messageService.fetchAll(member.getId(), userId);
         log.debug("messages={}", messages);
     

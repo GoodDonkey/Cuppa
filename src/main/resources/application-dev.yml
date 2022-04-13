@@ -29,6 +29,9 @@ logging:
     com:
       cuppa:
         cuppa: debug
+    org:
+      springframework:
+        security: debug
 
 server:
   port: 8081
