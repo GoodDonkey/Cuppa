@@ -7,6 +7,8 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @NotNull
+@AllArgsConstructor
+@NoArgsConstructor
 public class MemberSignupRequestDTO {
     
     private String loginId;
