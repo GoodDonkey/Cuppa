@@ -1,32 +1,28 @@
-# Cuppa 프로젝트 개요
-
-## ↗️ 프로젝트 문서
-
-[Cuppa 프로젝트 문서](https://www.notion.so/d9ddaba5c10a4616863d5bc34ad2332d)
-
 # 💫 프로젝트 개요
 
-Spring WebSocket 을 활용한 채팅 어플리케이션 입니다.
+Spring WebSocket 을 활용한 채팅 웹사이트 입니다.
+
+
 
 # 🛠️ 시스템 아키텍처
 
 ![cuppa-cicd2.png](https://github.com/GoodDonkey/Cuppa/blob/b316a97d36be1dc8e90c2ea3fa6f20901c79c19b/etc/cuppa-cicd2.png)
 
 # 🧙 문서
+[WebSocket](https://hungrydonkey.notion.site/WebSocket-8d97faedd282461697fa3e066e477a86)
 
-[WebSocket](https://www.notion.so/WebSocket-8d97faedd282461697fa3e066e477a86)
+[Stomp](https://hungrydonkey.notion.site/Stomp-9549a8b166e1467791ee5f1d1fa1d534)
 
-[Stomp](https://www.notion.so/Stomp-9549a8b166e1467791ee5f1d1fa1d534)
+[SockJS](https://hungrydonkey.notion.site/SockJS-d2b76184c3ab456f92be6ca5d41c4deb)
 
-[SockJS](https://www.notion.so/SockJS-d2b76184c3ab456f92be6ca5d41c4deb)
+[Route53 + ACM + ELB로 DNS 설정, HTTPS 설정, 로드밸런서 설정하기](https://hungrydonkey.notion.site/Route53-ACM-ELB-DNS-HTTPS-f4ee5d273d3a4360b975a7a358592cc2)
 
-[Route53 + ACM + ELB로 DNS 설정, HTTPS 설정, 로드밸런서 설정하기](https://www.notion.so/Route53-ACM-ELB-DNS-HTTPS-f4ee5d273d3a4360b975a7a358592cc2)
+[Github Actions + CodeDeploy 로 CI/CD 구축하기](https://hungrydonkey.notion.site/Github-Actions-CodeDeploy-CI-CD-571337fe0ca94912a1ecc6d51822195f)
 
-[Github Actions + CodeDeploy 로 CI/CD 구축하기](https://www.notion.so/Github-Actions-CodeDeploy-CI-CD-571337fe0ca94912a1ecc6d51822195f)
+[Message Queue 개념 + RabbitMQ 프로젝트에 적용해보기](https://hungrydonkey.notion.site/Message-Queue-RabbitMQ-34841b5d26fd4dfaaf71175f91cb37bd)
 
-[Message Queue 개념 + RabbitMQ 프로젝트에 적용해보기](https://www.notion.so/Message-Queue-RabbitMQ-34841b5d26fd4dfaaf71175f91cb37bd)
+[Spring Security 비동기 요청 검증에 대한 예외 처리하기](https://hungrydonkey.notion.site/Spring-Security-a971ba8dbeb54fdf89370b59b6114c39)
 
-[Spring Security 비동기 요청 검증에 대한 예외 처리하기](https://www.notion.so/Spring-Security-a971ba8dbeb54fdf89370b59b6114c39)
 
 # 🪣 DB 설계
 
