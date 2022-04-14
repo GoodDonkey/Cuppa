@@ -1,12 +1,15 @@
 package com.cuppa.cuppa;
 
-import com.cuppa.cuppa.messaging.repository.ChatRoomMemberRepository;
-import com.cuppa.cuppa.messaging.service.ChatRoomService;
-import com.cuppa.cuppa.main.domain.Member;
-import com.cuppa.cuppa.messaging.repository.ChatRoomRepository;
-import com.cuppa.cuppa.main.repository.MemberRepository;
+import com.cuppa.cuppa.adapter.in.web.dto.MemberSignupRequestDTO;
+import com.cuppa.cuppa.adapter.out.persistence.ChatRoomMemberRepository;
+import com.cuppa.cuppa.adapter.out.persistence.ChatRoomRepository;
+import com.cuppa.cuppa.adapter.out.persistence.MemberRepository;
+import com.cuppa.cuppa.application.port.in.SignupUseCase;
+import com.cuppa.cuppa.application.service.ChatRoomService;
+import com.cuppa.cuppa.domain.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -21,6 +24,7 @@ public class TestDataInit {
     private final ChatRoomRepository chatRoomRepository;
     private final ChatRoomMemberRepository chatRoomMemberRepository;
     private final ChatRoomService chatRoomService;
+    private final SignupUseCase signupUseCase;
     
     
     /**
@@ -43,7 +47,13 @@ public class TestDataInit {
         member3.setLoginId("qwe");
         member3.setPassword("qwe!");
         member3.setUsername("qweUser");
-
+    
+        MemberSignupRequestDTO memberDTO = new MemberSignupRequestDTO();
+        memberDTO.setLoginId("asdf");
+        memberDTO.setPassword("asdf");
+        memberDTO.setUsername("asdf");
+        signupUseCase.signUp(memberDTO);
+    
         memberRepository.save(member);
         memberRepository.save(member2);
         memberRepository.save(member3);
