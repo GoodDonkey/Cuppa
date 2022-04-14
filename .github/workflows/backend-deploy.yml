@@ -1,9 +1,7 @@
-name: Java CI with Gradle and Docker develop
+name: Java CI with Gradle and Docker
 
 on:
   push:
-    branches: [ develop ]
-  pull_request:
     branches: [ develop ]
 
 env:
