@@ -1,10 +1,10 @@
-name: Java CI with Gradle and Docker
+name: Java CI/CD with Gradle and Docker
 
 on:
   push:
-    branches: [ develop ]
+    branches: [ main ]
   pull_request:
-    branches: [ develop ]
+    branches: [ main ]
 
 env:
   S3_BUCKET_NAME: cuppa-backend
@@ -21,7 +21,6 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
-
 
       - name: Build with Gradle
         uses: gradle/gradle-build-action@v2
