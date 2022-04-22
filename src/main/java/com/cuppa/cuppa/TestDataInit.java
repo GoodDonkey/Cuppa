@@ -19,6 +19,7 @@ import javax.annotation.PostConstruct;
 
 @Slf4j
 @Component
+@Profile({"dev", "test"})
 @RequiredArgsConstructor
 public class TestDataInit {
     
@@ -33,7 +34,6 @@ public class TestDataInit {
      * 테스트용 데이터 추가
      */
     @PostConstruct
-    @Profile({"dev", "test"})
     public void init() {
     
         Member member = new Member();
