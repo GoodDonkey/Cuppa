@@ -9,6 +9,8 @@ import com.cuppa.cuppa.application.service.ChatRoomService;
 import com.cuppa.cuppa.domain.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.context.annotation.Profile;
+import org.springframework.context.annotation.Scope;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
@@ -31,6 +33,7 @@ public class TestDataInit {
      * 테스트용 데이터 추가
      */
     @PostConstruct
+    @Profile({"dev", "test"})
     public void init() {
     
         Member member = new Member();
