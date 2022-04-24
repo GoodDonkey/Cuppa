@@ -32,9 +32,6 @@ logging:
     org:
       springframework:
         security: debug
-    io:
-      github:
-        stavshamir: debug
 
 server:
   port: 8081
