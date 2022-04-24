@@ -74,6 +74,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                    "/images/**",
                                    "/openapi.json",
                                    "/META-INF/**",
-                                   "/js/**");
+                                   "/js/**",
+                                   "/springwolf/**");
     }
 }

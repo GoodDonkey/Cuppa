@@ -23,6 +23,7 @@ import org.springframework.context.annotation.Configuration;
 public class RabbitMQConfig {
     
     private static final String CHAT_QUEUE_NAME = "chat.queue";
+    private static final String CHAT_QUEUE_NAME_2 = "chat-queue";
     private static final String CHAT_EXCHANGE_NAME = "chat.exchange";
     private static final String ROUTING_KEY = "to.*";
     
@@ -37,6 +38,9 @@ public class RabbitMQConfig {
     
     @Bean
     public Queue queue(){ return new Queue(CHAT_QUEUE_NAME, true); }
+    
+    @Bean
+    public Queue queue2(){ return new Queue(CHAT_QUEUE_NAME_2, false); }
     
     @Bean
     public TopicExchange exchange(){ return new TopicExchange(CHAT_EXCHANGE_NAME); }
