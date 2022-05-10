@@ -34,7 +34,7 @@ public class MemberService implements MemberFetchUseCase, MemberSaveUseCase {
     }
     
     @Override
-    public void save(Member member) {
-        memberSavePort.save(member);
+    public Member save(Member member) {
+        return memberSavePort.save(member);
     }
 }

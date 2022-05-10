@@ -4,5 +4,5 @@ import com.cuppa.cuppa.domain.Member;
 
 public interface MemberSaveUseCase {
     
-    void save(Member member);
+    Member save(Member member);
 }

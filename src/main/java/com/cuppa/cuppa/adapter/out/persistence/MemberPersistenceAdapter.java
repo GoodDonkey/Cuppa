@@ -34,8 +34,8 @@ public class MemberPersistenceAdapter implements MemberFetchPort,
     }
     
     @Override
-    public void save(Member member) {
-        memberRepository.save(member);
+    public Member save(Member member) {
+        return memberRepository.save(member);
     }
     
     @Override
