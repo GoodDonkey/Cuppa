@@ -7,7 +7,6 @@ import javax.persistence.*;
 import java.util.Set;
 
 @SuperBuilder
-@Getter
 @Setter
 @ToString
 @Entity
@@ -26,6 +25,7 @@ public class Member extends LoginEntity {
     private String username;
     
     @Enumerated(EnumType.STRING)
+    @Getter
     private Role role;
     
     @OneToMany(mappedBy = "member")

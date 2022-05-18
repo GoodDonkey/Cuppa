@@ -1,12 +1,11 @@
 package com.cuppa.cuppa.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 
+@Builder
 @Getter
 @ToString
 @NoArgsConstructor
@@ -21,11 +20,13 @@ public class Message extends TimeEntity {
     @Column
     private String message;
 
-    @Column
-    private Long senderId;
+    @ManyToOne
+    @JoinColumn(name = "sender_id")
+    private Member sender;
 
-    @Column
-    private Long receiverId;
+    @ManyToOne
+    @JoinColumn(name = "receiver_id")
+    private Member receiver;
     
     @Column
     private boolean checked;

@@ -27,7 +27,7 @@ public class MemberService implements MemberFetchUseCase, MemberSaveUseCase {
     public List<MemberDTO> findAllMembersExceptMe(Member member) {
         List<Member> members = memberFetchPort.fetchAllExceptMe(member);
         List<MemberDTO> memberDTOs = members.stream()
-                                            .map(memberMapper::toSimpleDTO)
+                                            .map(memberMapper::map)
                                             .collect(Collectors.toList());
         log.debug("memberDTOs={}", memberDTOs);
         return memberDTOs;

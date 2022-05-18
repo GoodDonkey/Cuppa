@@ -17,8 +17,8 @@ public class MessageMapper implements DTOMapper<MessageDTO, Message> {
         MessageDTO messageDTO = new MessageDTO();
         messageDTO.setId(message.getId());
         messageDTO.setMessage(message.getMessage());
-        messageDTO.setSender(memberMapper.map(message.getSenderId()));
-        messageDTO.setReceiver(memberMapper.map(message.getReceiverId()));
+        messageDTO.setSender(memberMapper.map(message.getSender()));
+        messageDTO.setReceiver(memberMapper.map(message.getReceiver()));
         messageDTO.setCreatedAt(message.getCreatedAt());
         messageDTO.setChecked(message.isChecked());
         log.debug("messageTransferDTO={}", messageDTO);
