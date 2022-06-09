@@ -3,27 +3,22 @@ package com.cuppa.cuppa;
 import com.cuppa.cuppa.adapter.in.web.dto.MemberSignupRequestDTO;
 import com.cuppa.cuppa.adapter.out.persistence.ChatRoomMemberRepository;
 import com.cuppa.cuppa.adapter.out.persistence.ChatRoomRepository;
-import com.cuppa.cuppa.adapter.out.persistence.MemberRepository;
 import com.cuppa.cuppa.application.port.in.SignupUseCase;
 import com.cuppa.cuppa.application.service.ChatRoomService;
-import com.cuppa.cuppa.domain.Member;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Profile;
-import org.springframework.context.annotation.Scope;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 
 
 @Slf4j
-@Component
 @Profile({"dev", "test"})
 @RequiredArgsConstructor
+@Component
 public class TestDataInit {
     
-    private final MemberRepository memberRepository;
     private final ChatRoomRepository chatRoomRepository;
     private final ChatRoomMemberRepository chatRoomMemberRepository;
     private final ChatRoomService chatRoomService;
@@ -35,32 +30,19 @@ public class TestDataInit {
      */
     @PostConstruct
     public void init() {
+        
+        MemberSignupRequestDTO memberSignupRequestDTO = new MemberSignupRequestDTO();
+        memberSignupRequestDTO.setLoginId("asdf");
+        memberSignupRequestDTO.setPassword("asdf");
+        memberSignupRequestDTO.setUsername("asdf");
+        signupUseCase.signUp(memberSignupRequestDTO);
     
-        Member member = new Member();
-        member.setLoginId("test");
-        member.setPassword("test!");
-        member.setUsername("testUser");
-
-        Member member2 = new Member();
-        member2.setLoginId("asd");
-        member2.setPassword("asd");
-        member2.setUsername("newUser");
-
-        Member member3 = new Member();
-        member3.setLoginId("qwe");
-        member3.setPassword("qwe!");
-        member3.setUsername("qweUser");
-    
-        MemberSignupRequestDTO memberDTO = new MemberSignupRequestDTO();
-        memberDTO.setLoginId("asdf");
-        memberDTO.setPassword("asdf");
-        memberDTO.setUsername("asdf");
-        signupUseCase.signUp(memberDTO);
-    
-        memberRepository.save(member);
-        memberRepository.save(member2);
-        memberRepository.save(member3);
-    
+        MemberSignupRequestDTO memberSignupRequestDTO2 = new MemberSignupRequestDTO();
+        memberSignupRequestDTO2.setLoginId("qweqwe");
+        memberSignupRequestDTO2.setPassword("qweqwe");
+        memberSignupRequestDTO2.setUsername("qweqwe");
+        signupUseCase.signUp(memberSignupRequestDTO2);
+        
 //        ChatRoom chatRoom = new ChatRoom();
 //        chatRoom.setName("room1");
 //        chatRoomRepository.save(chatRoom);
