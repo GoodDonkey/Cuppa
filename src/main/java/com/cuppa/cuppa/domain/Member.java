@@ -24,8 +24,8 @@ public class Member extends LoginEntity {
     @Column(unique = true, nullable = false)
     private String username;
     
-    @Enumerated(EnumType.STRING)
     @Getter
+    @Enumerated(EnumType.STRING)
     private Role role;
     
     @OneToMany(mappedBy = "member")

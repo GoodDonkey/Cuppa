@@ -44,7 +44,8 @@ public class MemberPersistenceAdapter implements MemberFetchPort,
     }
     
     @Override
-    public Optional<Member> findById(Long loginId) {
-        return memberRepository.findById(loginId);
+    public Member findById(Long loginId) {
+        Optional<Member> memberOptional = memberRepository.findById(loginId);
+        return memberOptional.orElse(null);
     }
 }

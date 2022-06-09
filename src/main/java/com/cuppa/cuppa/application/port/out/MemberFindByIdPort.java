@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface MemberFindByIdPort {
     
-    Optional<Member> findById(Long loginId);
+    Member findById(Long loginId);
     
 }
