@@ -12,16 +12,15 @@ import org.springframework.stereotype.Component;
 public class MessageDTOMapper implements MessageRequestToMessageResponse, MessageToMessageResponse {
     
     private final MemberFindByIdPort memberFindByIdPort;
-    private final MemberMapper memberMapper;
+    private final MemberToMemberDTO memberToMemberDTO;
     
     @Override
     public MessageResponseDTO map(MessageRequestDTO messageRequestDTO) {
-        // Todo: 회원정보를 조회해서 MessageResponseDTO 를 만든다.
         MessageResponseDTO messageResponseDTO = new MessageResponseDTO();
         
         messageResponseDTO.setMessage(messageRequestDTO.getMessage());
-        messageResponseDTO.setSender(memberMapper.map(memberFindByIdPort.findById(messageRequestDTO.getSenderId())));
-        messageResponseDTO.setReceiver(memberMapper.map(memberFindByIdPort.findById(messageRequestDTO.getReceiverId())));
+        messageResponseDTO.setSender(memberToMemberDTO.map(memberFindByIdPort.findById(messageRequestDTO.getSenderId())));
+        messageResponseDTO.setReceiver(memberToMemberDTO.map(memberFindByIdPort.findById(messageRequestDTO.getReceiverId())));
         messageResponseDTO.setCreatedAt(messageResponseDTO.getCreatedAt());
         messageResponseDTO.setChecked(messageRequestDTO.isChecked());
         return messageResponseDTO;
@@ -32,8 +31,8 @@ public class MessageDTOMapper implements MessageRequestToMessageResponse, Messag
         MessageResponseDTO messageResponseDTO = new MessageResponseDTO();
         messageResponseDTO.setId(message.getId());
         messageResponseDTO.setMessage(message.getMessage());
-        messageResponseDTO.setSender(memberMapper.map(message.getSender()));
-        messageResponseDTO.setReceiver(memberMapper.map(message.getReceiver()));
+        messageResponseDTO.setSender(memberToMemberDTO.map(message.getSender()));
+        messageResponseDTO.setReceiver(memberToMemberDTO.map(message.getReceiver()));
         messageResponseDTO.setCreatedAt(message.getCreatedAt());
         messageResponseDTO.setChecked(message.isChecked());
         log.debug("messageTransferDTO={}", messageResponseDTO);
