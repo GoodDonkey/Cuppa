@@ -1,22 +1,16 @@
 package com.cuppa.cuppa.application.service;
 
-import com.cuppa.cuppa.adapter.in.web.dto.MemberMapper;
-import com.cuppa.cuppa.adapter.out.persistence.MemberPersistenceAdapter;
-import com.cuppa.cuppa.adapter.out.persistence.MemberRepository;
 import com.cuppa.cuppa.application.port.out.MemberFetchPort;
 import com.cuppa.cuppa.application.port.out.MemberSavePort;
 import com.cuppa.cuppa.domain.Member;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(properties = "spring.profiles.active:test")
 class MemberServiceTest {
