@@ -1,5 +1,6 @@
 package com.cuppa.cuppa.adapter.in.web.dto;
 
+import com.cuppa.cuppa.application.port.out.MemberFindByIdPort;
 import com.cuppa.cuppa.domain.Message;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -8,20 +9,17 @@ import org.springframework.stereotype.Component;
 @RequiredArgsConstructor
 @Component
 @Slf4j
-public class MessageMapper implements DTOMapper<MessageDTO, Message> {
+public class MessageMapper implements MessageRequestToMessage {
     
-    private final MemberMapper memberMapper;
+    private final MemberFindByIdPort memberFindByIdPort;
     
     @Override
-    public MessageDTO map(Message message) {
-        MessageDTO messageDTO = new MessageDTO();
-        messageDTO.setId(message.getId());
-        messageDTO.setMessage(message.getMessage());
-        messageDTO.setSender(memberMapper.map(message.getSender()));
-        messageDTO.setReceiver(memberMapper.map(message.getReceiver()));
-        messageDTO.setCreatedAt(message.getCreatedAt());
-        messageDTO.setChecked(message.isChecked());
-        log.debug("messageTransferDTO={}", messageDTO);
-        return messageDTO;
+    public Message map(MessageRequestDTO messageRequestDTO) {
+        return Message.builder()
+                      .message(messageRequestDTO.getMessage())
+                      .receiver(memberFindByIdPort.findById(messageRequestDTO.getReceiverId()))
+                      .sender(memberFindByIdPort.findById(messageRequestDTO.getSenderId()))
+                      .checked(messageRequestDTO.isChecked())
+                      .build();
     }
 }

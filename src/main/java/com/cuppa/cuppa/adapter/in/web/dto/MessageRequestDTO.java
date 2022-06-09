@@ -11,12 +11,11 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @ToString
-public class MessageDTO implements TransferObject {
+public class MessageRequestDTO {
     
-    private Long id;
     private String message;
-    private MemberDTO sender;
-    private MemberDTO receiver;
+    private Long senderId;
+    private Long receiverId;
     private LocalDateTime createdAt;
     private boolean checked;
 }
