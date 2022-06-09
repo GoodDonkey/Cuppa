@@ -26,7 +26,7 @@ Spring WebSocket 을 활용한 채팅 웹사이트 입니다.
 
 # 🪣 DB 설계
 
-![cuppa-ERD.png](https://github.com/GoodDonkey/Cuppa/blob/b316a97d36be1dc8e90c2ea3fa6f20901c79c19b/etc/cuppa-ERD.png)
+![cuppa-ERD.png](https://raw.githubusercontent.com/GoodDonkey/Cuppa/e5f29426d94c7af30148c61dc167af12f396d902/etc/cuppa-ERD.png)
 
 # 🙉 프로젝트 설정
 
