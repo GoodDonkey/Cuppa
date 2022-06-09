@@ -1,6 +1,8 @@
 package com.cuppa.cuppa.adapter.in.web;
 
-import com.cuppa.cuppa.adapter.in.web.dto.MessageDTO;
+import com.cuppa.cuppa.adapter.in.web.dto.MessageRequestDTO;
+import com.cuppa.cuppa.adapter.in.web.dto.MessageRequestToMessageResponse;
+import com.cuppa.cuppa.adapter.in.web.dto.MessageResponseDTO;
 import com.cuppa.cuppa.adapter.in.web.dto.MessageMapper;
 import com.cuppa.cuppa.adapter.out.persistence.MessageSaveEvent;
 import com.cuppa.cuppa.domain.Message;
@@ -23,18 +25,19 @@ public class StompRabbitController {
     private final static String CHAT_QUEUE_NAME = "chat.queue";
     
     private final ApplicationEventPublisher publisher;
-    private final MessageMapper messageMapper;
+    private final MessageRequestToMessageResponse messageRequestToMessageResponse;
     
     
     @MessageMapping("chat.{to}")
-    public void send(@DestinationVariable Long to, Message message){
+    public void send(@DestinationVariable Long to, MessageRequestDTO messageRequestDTO){
         log.debug("to={}", to);
-        publisher.publishEvent(new MessageSaveEvent(message));
-        rabbitTemplate.convertAndSend(CHAT_EXCHANGE_NAME,"to." + to, messageMapper.map(message));
+        log.debug("messageRequestDTO={}", messageRequestDTO);
+        publisher.publishEvent(new MessageSaveEvent(messageRequestDTO));
+        rabbitTemplate.convertAndSend(CHAT_EXCHANGE_NAME,"to." + to, messageRequestToMessageResponse.map(messageRequestDTO));
     }
     
     @RabbitListener(queues = CHAT_QUEUE_NAME)
-    public void receive(MessageDTO message){
+    public void receive(MessageResponseDTO message){
         // Todo: 메시지 받을 때 어떤 로직을?
         System.out.println("received : " + message.getMessage());
     }

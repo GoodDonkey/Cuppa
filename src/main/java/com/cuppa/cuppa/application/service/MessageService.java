@@ -1,7 +1,6 @@
 package com.cuppa.cuppa.application.service;
 
-import com.cuppa.cuppa.adapter.in.web.dto.MessageDTO;
-import com.cuppa.cuppa.adapter.in.web.dto.MessageMapper;
+import com.cuppa.cuppa.adapter.in.web.dto.*;
 import com.cuppa.cuppa.adapter.out.persistence.MessageSaveEvent;
 import com.cuppa.cuppa.application.port.in.MessageFetchUseCase;
 import com.cuppa.cuppa.application.port.in.MessageSaveUseCase;
@@ -26,13 +25,14 @@ public class MessageService implements MessageFetchUseCase, MessageSaveUseCase {
     
     private final MessageSavePort messageSavePort;
     private final MessageFetchPort messageFetchPort;
-    private final MessageMapper messageMapper;
+    private final MessageToMessageResponse messageToMessageResponse;
+    private final MessageRequestToMessage messageRequestToMessage;
     
     @Override
-    public List<MessageDTO> fetchAll(Long userId, Long otherId) {
+    public List<MessageResponseDTO> fetchAll(Long userId, Long otherId) {
         List<Message> messages = messageFetchPort.fetchAll(userId, otherId);
         return messages.stream()
-                .map(messageMapper::map)
+                .map(messageToMessageResponse::map)
                 .collect(Collectors.toList());
     }
     
@@ -40,7 +40,7 @@ public class MessageService implements MessageFetchUseCase, MessageSaveUseCase {
     @Async
     @Override
     public void save(MessageSaveEvent messageSaveEvent) {
-        Message message = messageSaveEvent.getMessage();
+        Message message = messageRequestToMessage.map(messageSaveEvent.getMessage());
         messageSavePort.save(message);
     }
 }
